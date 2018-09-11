@@ -1,10 +1,9 @@
 import * as React from "react";
-import TextInput from "./views/textInput";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import About from "./views/about";
-import { SakeName } from "./components/atoms/sakeName";
+import { MainScreen } from "./screens/mainScreen";
 
 export default class App extends React.Component {
   render() {
@@ -12,18 +11,8 @@ export default class App extends React.Component {
       <Provider store={store}>
         <BrowserRouter>
           <div>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/about">About</Link>
-              </li>
-            </ul>
-            <h1 className="title">react-web-boilerplate</h1>
-            <Route exact path="/" component={TextInput} />
+            <Route exact path="/" component={MainScreen} />
             <Route path="/about" component={About} />
-            <SakeName>ほろ酔い</SakeName>
           </div>
         </BrowserRouter>
       </Provider>

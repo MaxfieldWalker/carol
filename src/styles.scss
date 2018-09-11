@@ -1,4 +1,18 @@
+@import "~normalize.css/normalize.css";
+
 .title {
-    font-size: 32px;
-    color: red;
+  font-size: 32px;
+  color: red;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI",
+    sans-serif;
 }
