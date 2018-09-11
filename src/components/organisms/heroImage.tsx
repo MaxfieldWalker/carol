@@ -13,7 +13,7 @@ export class HeroImage extends React.Component {
     return (
       <Wrapper>
         <ImagePlaceholder
-          styled={{
+          style={{
             position: "absolute"
           }}
           height={400}

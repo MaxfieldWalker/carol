@@ -3,7 +3,7 @@ import * as React from "react";
 interface Props {
   width?: number;
   height?: number;
-  styled?: React.CSSProperties;
+  style?: React.CSSProperties;
 }
 
 export default class ImagePlaceholder extends React.Component<Props> {
@@ -18,7 +18,7 @@ export default class ImagePlaceholder extends React.Component<Props> {
           width: w,
           height: h,
           backgroundColor: "lightgray",
-          ...this.props.styled
+          ...this.props.style
         }}
       />
     );
