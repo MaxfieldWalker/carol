@@ -28,12 +28,12 @@ export class MainScreen extends React.Component<Props & RouterProps> {
         <AppHeader />
         <HeroImage />
         <ButtonWrapper>
-          <UIButton style={buttonStyle} primary onPress={() => alert("選ぶ")}>
+          <UIButton style={buttonStyle} primary onClick={() => alert("選ぶ")}>
             選ぶ
           </UIButton>
           <UIButton
             style={buttonStyle}
-            onPress={this.onOmakaseButtonPressed.bind(this)}
+            onClick={this.onOmakaseButtonPressed.bind(this)}
           >
             おまかせ
           </UIButton>

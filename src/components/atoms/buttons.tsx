@@ -3,32 +3,42 @@ import { Color, CornerRadius } from "../theme";
 
 interface Props {
   primary?: boolean;
-  onPress?: () => void;
+  onClick?: () => void;
+  disabled?: boolean;
+  disabledColor?: string;
   style?: React.CSSProperties;
 }
 
 export class UIButton extends React.Component<Props> {
   render() {
-    const { primary, onPress } = this.props;
+    const { primary, disabled, onClick } = this.props;
 
     const basicStyle: React.CSSProperties = {
       padding: "6px",
       height: 56,
-      backgroundColor: Color.blue,
       borderRadius: CornerRadius.mid,
       border: "1px solid gray",
       margin: "6px 12px"
     };
 
-    const primaryStyle: React.CSSProperties = {
+    const s: React.CSSProperties = {
       ...basicStyle,
-      backgroundColor: Color.orange
+      backgroundColor: disabled
+        ? Color.lightgray
+        : primary
+          ? Color.orange
+          : Color.blue
     };
 
-    const s = primary ? primaryStyle : basicStyle;
-
     return (
-      <button style={{ ...s, ...this.props.style }} onClick={onPress}>
+      <button
+        style={{ ...s, ...this.props.style }}
+        onClick={() => {
+          if (!disabled && onClick) {
+            onClick();
+          }
+        }}
+      >
         {this.props.children}
       </button>
     );

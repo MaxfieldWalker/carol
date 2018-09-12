@@ -64,6 +64,10 @@ export default class RecommendedScreen extends React.Component<Props, State> {
     });
   }
 
+  onNextButtonClick() {
+    console.log("go next");
+  }
+
   render() {
     const { userName } = this.props;
     const { isModalVisible, focusedItem, selectedItems } = this.state;
@@ -124,7 +128,7 @@ export default class RecommendedScreen extends React.Component<Props, State> {
             display: "block"
           }}
           items={selectedItems}
-          onNextButtonClicked={() => console.log("go next")}
+          onNextButtonClicked={this.onNextButtonClick.bind(this)}
         />
       </div>
     );

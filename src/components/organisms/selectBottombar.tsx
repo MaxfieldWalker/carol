@@ -31,7 +31,7 @@ export default class SelectBottomBar extends React.Component<Props> {
             width: "auto"
           }}
         >
-          <UIButton primary onPress={onNextButtonClicked}>
+          <UIButton primary onClick={onNextButtonClicked}>
             次へ >
           </UIButton>
         </div>

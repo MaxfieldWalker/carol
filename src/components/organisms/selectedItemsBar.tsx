@@ -84,7 +84,14 @@ export default class SelectedItemsBar extends React.Component<Props> {
               width: "auto"
             }}
           >
-            <UIButton>次へ ></UIButton>
+            <UIButton
+              disabled={selectedItemsCount == 0}
+              onClick={() => {
+                if (onNextButtonClicked) onNextButtonClicked();
+              }}
+            >
+              次へ >
+            </UIButton>
           </div>
         </div>
       </Wrapper>
