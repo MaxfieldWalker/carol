@@ -12,6 +12,9 @@ import { UISubheader } from "../components/atoms/typography";
 import { Color } from "../components/theme";
 import { SelectEffectDescriptor } from "redux-saga/effects";
 import styled from "styled-components";
+import SelectBottomBar from "../components/organisms/selectBottombar";
+import { AppHeader } from "../components/organisms/appHeader";
+import AppFooter from "../components/organisms/appFooter";
 
 interface Props {}
 
@@ -103,6 +106,7 @@ export default class SelectScreen extends React.Component<Props, State> {
 
     return (
       <div>
+        <AppHeader />
         <div style={sectionStyle}>
           <UISubheader>キーワード</UISubheader>
           <ItemsWrapper>
@@ -137,11 +141,12 @@ export default class SelectScreen extends React.Component<Props, State> {
           </div>
         </div>
 
-        <div>
-          {this.getSelectedItems().map(name => (
-            <div>{name}</div>
-          ))}
-        </div>
+        <SelectBottomBar
+          selectedItems={this.getSelectedItems()}
+          onNextButtonClicked={() => console.log("次へ")}
+          isNextButtonEnabled={false}
+        />
+        <AppFooter />
       </div>
     );
   }
