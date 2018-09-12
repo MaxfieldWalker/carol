@@ -76,6 +76,11 @@ export interface Sake {
    * 説明文
    */
   description: string;
+
+  /**
+   * 酒の色
+   */
+  color: string;
 }
 
 /**

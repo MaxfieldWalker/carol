@@ -6,6 +6,7 @@ import { Sake } from "../api/types";
 import { SakeItem } from "../components/organisms/sakeItem";
 import { SakeDetailModal } from "../components/templates/sakeDetailModal";
 import SelectedItemsBar from "../components/organisms/selectedItemsBar";
+import { dummySakeData } from "../data/sake";
 const Rodal = require("rodal").default;
 
 interface Props {
@@ -45,24 +46,31 @@ export default class RecommendedScreen extends React.Component<Props, State> {
     this.setState({ isModalVisible: false });
   }
 
+  onSelectButtonClicked(sake: Sake) {
+    const { selectedItems } = this.state;
+
+    const items = selectedItems.slice();
+    const index = items.findIndex(x => x.id === sake.id);
+
+    if (index >= 0) {
+      // 削除しています
+      items.splice(index, 1);
+    } else {
+      items.push(sake);
+    }
+
+    this.setState({
+      selectedItems: items
+    });
+  }
+
   render() {
     const { userName } = this.props;
     const { isModalVisible, focusedItem, selectedItems } = this.state;
 
-    const dummyData: Sake[] = Array(7)
-      .fill(0)
-      .map((_, index) => ({
-        id: index,
-        name: "モスコミュール",
-        description:
-          "モスコー・ミュールとはオールデイカクテルとして、非常にメジャーなスタンダードカクテルの一つ。モスコー・ミュールとは「モスクワのラバ」という意味があり、「ラバに蹴飛ばされたように」効いてくる、強いウォッカベースのカクテルであることを表す。なお名称にクーラーとは付いていないが、クーラーの一種である。",
-        price: 289,
-        imageUrl: ""
-      }));
-
     const sake = focusedItem!!;
     const isCurrentFocusedItemSelected =
-      selectedItems.findIndex(x => x.name === sake.name) >= 0;
+      selectedItems.findIndex(x => x.id === sake.id) >= 0;
 
     return (
       <div>
@@ -77,7 +85,7 @@ export default class RecommendedScreen extends React.Component<Props, State> {
               flexWrap: "wrap"
             }}
           >
-            {dummyData.map((sake: Sake, index: number) => (
+            {dummySakeData.map((sake: Sake, index: number) => (
               <SakeItem
                 key={index}
                 {...sake}
@@ -105,7 +113,7 @@ export default class RecommendedScreen extends React.Component<Props, State> {
           <SakeDetailModal
             {...sake}
             isSelected={isCurrentFocusedItemSelected}
-            onSelectButtonClicked={() => console.log("select clicked")}
+            onSelectButtonClicked={() => this.onSelectButtonClicked(sake)}
           />
         </Rodal>
         <SelectedItemsBar

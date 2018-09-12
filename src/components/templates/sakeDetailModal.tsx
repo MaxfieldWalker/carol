@@ -2,6 +2,8 @@ import * as React from "react";
 import ImagePlaceholder from "../atoms/imagePlaceholder";
 import { UISubheader, UILargeItemName } from "../atoms/typography";
 import { UIButton } from "../atoms/buttons";
+import CheckButton from "../atoms/checkButton";
+import { Color } from "../theme";
 
 interface Props {
   name: string;
@@ -43,7 +45,14 @@ export const SakeDetailModal: React.StatelessComponent<Props> = props => {
             <UILargeItemName>{name}</UILargeItemName>
           </div>
           <div style={{ width: "auto" }}>
-            <UIButton primary>選択する</UIButton>
+            <CheckButton
+              isChecked={isSelected}
+              color={Color.blue}
+              checkedColor={Color.orange}
+              name="追加する"
+              checkedName="追加済み"
+              onClick={onSelectButtonClicked}
+            />
           </div>
         </div>
         <div>{price}円</div>

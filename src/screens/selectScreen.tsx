@@ -66,7 +66,7 @@ export default class SelectScreen extends React.Component<Props, State> {
       ],
       keywordList: [1, 2, 3, 4, 5, 6, 7, 8, 9].map(x => ({
         imageUrl: "",
-        name: "kankitsu" + x,
+        id: "kankitsu" + x,
         displayName: "柑橘系",
         isChecked: false
       }))
