@@ -1,5 +1,13 @@
 import axios, { AxiosInstance } from "axios";
 import * as path from "path";
+import {
+  OmakaseSet,
+  PreferenceKeyword,
+  PreferenceStrength,
+  Sake,
+  CreditCardInfo,
+  PayApiResponse
+} from "./types";
 
 export class ApiClient {
   private static ENDPOINT = "http://localhost:8080/api";
@@ -66,100 +74,4 @@ export class ApiClient {
   private resolveUrl(relativePath: string): string {
     return path.resolve(ApiClient.ENDPOINT, relativePath);
   }
-}
-
-export interface PayApiResponse {
-  /**
-   * 注文番号
-   */
-  order_number: number;
-}
-
-export interface CreditCardInfo {
-  /**
-   * クレカ番号
-   */
-  number: number;
-
-  /**
-   * 名義
-   */
-  name: string;
-
-  /**
-   * セキュリティコード
-   */
-  securityCode: number;
-
-  /**
-   * 有効期限 (日付を文字列でフォーマットする)
-   */
-  expiration: string;
-}
-
-export interface OmakaseSet {
-  /**
-   * セットの名前
-   */
-  name: string;
-
-  /**
-   * セットの説明
-   */
-  description: string;
-
-  /**
-   * 値段の合計 (円)
-   */
-  price: number;
-
-  /**
-   * 商品
-   */
-  items: Sake[];
-
-  /**
-   * 紹介画像
-   */
-  thumbnail: string;
-}
-
-export interface Sake {
-  id: number;
-
-  /**
-   * 酒の名前
-   */
-  name: string;
-
-  /**
-   * 値段 (円)
-   */
-  price: number;
-
-  /**
-   * 画像
-   */
-  image: string;
-}
-
-/**
- * 好みのお酒を絞りこむキーワード
- */
-export enum PreferenceKeyword {
-  // さわやか
-  "sawayaka",
-  // 柑橘系
-  "kankitsu"
-}
-
-export enum PreferenceStrength {
-  // よわめ
-  "low",
-  // ふつう
-  "mid",
-  // つよめ
-  "high",
-  // わからない
-  "unknown"
 }

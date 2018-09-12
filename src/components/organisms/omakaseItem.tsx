@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Sake } from "../../api/apiClient";
 import ImagePlaceholder from "../atoms/imagePlaceholder";
 import { UISubheader, CaptionText } from "../atoms/typography";
 import { PriceTag } from "../atoms/priceTag";
+import { Sake } from "../../api/types";
 
 export interface Props {
   name: string;

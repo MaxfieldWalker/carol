@@ -36,6 +36,7 @@ export const UIItemName: React.StatelessComponent<Props> = props => (
       fontSize: 18,
       color: Color.black,
       fontWeight: "bold",
+      letterSpacing: "0.1em",
       ...props.style
     }}
   >

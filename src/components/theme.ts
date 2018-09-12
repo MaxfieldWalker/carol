@@ -10,3 +10,9 @@ export enum Color {
   gray = "#404040",
   white = "#fff"
 }
+
+export enum CornerRadius {
+  small = 4,
+  Mid = 16,
+  Large = 20
+}

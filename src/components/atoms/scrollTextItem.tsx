@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Color } from "../theme";
+import { Color, CornerRadius } from "../theme";
 
 export interface ScrollTextItemProps {
   name: string;
@@ -36,7 +36,7 @@ export const ScrollTextItem: React.StatelessComponent<
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 16,
+    borderRadius: CornerRadius.Mid,
     cursor: "pointer",
     margin: "12px 8px"
   };

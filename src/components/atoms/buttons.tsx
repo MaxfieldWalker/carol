@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Color } from "../theme";
+import { Color, CornerRadius } from "../theme";
 
 interface Props {
   primary?: boolean;
@@ -15,7 +15,7 @@ export class UIButton extends React.Component<Props> {
       padding: "6px",
       height: 56,
       backgroundColor: Color.blue,
-      borderRadius: 12,
+      borderRadius: CornerRadius.Mid,
       border: "1px solid gray",
       margin: "6px 12px"
     };

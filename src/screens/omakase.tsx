@@ -1,10 +1,10 @@
 import * as React from "react";
 import { AppHeader } from "../components/organisms/appHeader";
 import { UIHeader } from "../components/atoms/typography";
-import { OmakaseSet, Sake } from "../api/apiClient";
 import { OmakaseItem } from "../components/organisms/omakaseItem";
 import { LoadingCircle } from "../components/atoms/loadingCircle";
 import AppFooter from "../components/organisms/appFooter";
+import { OmakaseSet } from "../api/types";
 
 interface Props {}
 

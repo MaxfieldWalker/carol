@@ -6,6 +6,7 @@ import About from "./views/about";
 import { MainScreen } from "./screens/mainScreen";
 import OmakaseScreen from "./screens/omakase";
 import SelectScreen from "./screens/selectScreen";
+import RecommendedScreen from "./screens/recommendedScreen";
 
 export default class App extends React.Component {
   render() {
@@ -16,6 +17,7 @@ export default class App extends React.Component {
             <Route exact path="/" component={MainScreen} />
             <Route exact path="/omakase" component={OmakaseScreen} />
             <Route exact path="/select" component={SelectScreen} />
+            <Route exact path="/items" component={RecommendedScreen} />
             <Route path="/about" component={About} />
           </div>
         </BrowserRouter>

@@ -1,7 +1,7 @@
 import * as React from "react";
 import ImagePlaceholder from "./imagePlaceholder";
 import { UIItemName } from "./typography";
-import { Color } from "../theme";
+import { Color, CornerRadius } from "../theme";
 
 export interface ScrollImageItemProps {
   imageUrl: string;
@@ -23,7 +23,7 @@ export const ScrollImageItem: React.StatelessComponent<
     cursor: "pointer",
     padding: "12px 8px",
     backgroundColor: isChecked ? Color.orange : "transparent",
-    borderRadius: 16,
+    borderRadius: CornerRadius.Mid,
     width: "auto",
     ...props.style
   };
@@ -35,7 +35,7 @@ export const ScrollImageItem: React.StatelessComponent<
         width={itemSize}
         height={itemSize}
         style={{
-          borderRadius: 16
+          borderRadius: CornerRadius.Mid
         }}
       />
       <UIItemName
