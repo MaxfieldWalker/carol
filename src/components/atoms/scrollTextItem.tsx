@@ -1,22 +1,22 @@
 import * as React from "react";
 import { Color, CornerRadius } from "../theme";
 
-export interface ScrollTextItemProps {
+export interface CheckButtonProps {
+  id: string;
   name: string;
-  displayName: string;
   color: string;
   isChecked: boolean;
   onClick?: () => void;
   style?: React.CSSProperties;
 }
 
-export const ScrollTextItem: React.StatelessComponent<
-  ScrollTextItemProps
+export const CheckButton: React.StatelessComponent<
+  CheckButtonProps
 > = props => {
   const itemWidth = 100;
   const itemHeight = 40;
 
-  const { color, isChecked, displayName, onClick } = props;
+  const { color, isChecked, name, onClick } = props;
 
   const uncheckedStyle: React.CSSProperties = {
     borderColor: color,
@@ -54,7 +54,7 @@ export const ScrollTextItem: React.StatelessComponent<
           userSelect: "none"
         }}
       >
-        {displayName}
+        {name}
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import { Color, CornerRadius } from "../theme";
 
 export interface ScrollImageItemProps {
   imageUrl: string;
-  name: string;
+  id: string;
   displayName: string;
   isChecked: boolean;
   style?: React.CSSProperties;
@@ -15,7 +15,7 @@ export interface ScrollImageItemProps {
 export const ScrollImageItem: React.StatelessComponent<
   ScrollImageItemProps
 > = props => {
-  const { imageUrl, name, displayName, isChecked, onClick } = props;
+  const { imageUrl, displayName, isChecked, onClick } = props;
 
   const itemSize = 100;
 

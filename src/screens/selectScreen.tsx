@@ -4,8 +4,8 @@ import {
   ScrollImageItemProps
 } from "../components/atoms/scrollImageItem";
 import {
-  ScrollTextItem,
-  ScrollTextItemProps
+  CheckButton,
+  CheckButtonProps
 } from "../components/atoms/scrollTextItem";
 
 import { UISubheader } from "../components/atoms/typography";
@@ -24,7 +24,7 @@ interface SelectableItem {
 }
 
 interface State {
-  strengthList: ScrollTextItemProps[];
+  strengthList: CheckButtonProps[];
   keywordList: ScrollImageItemProps[];
 }
 
@@ -40,26 +40,26 @@ export default class SelectScreen extends React.Component<Props, State> {
     this.state = {
       strengthList: [
         {
-          name: "unknown",
-          displayName: "わからない",
+          id: "unknown",
+          name: "わからない",
           color: Color.gray,
           isChecked: false
         },
         {
-          name: "low",
-          displayName: "よわめ",
+          id: "low",
+          name: "よわめ",
           color: Color.blue,
           isChecked: false
         },
         {
-          name: "mid",
-          displayName: "ふつう",
+          id: "mid",
+          name: "ふつう",
           color: Color.green,
           isChecked: false
         },
         {
-          name: "high",
-          displayName: "つよめ",
+          id: "high",
+          name: "つよめ",
           color: Color.orange,
           isChecked: false
         }
@@ -75,7 +75,7 @@ export default class SelectScreen extends React.Component<Props, State> {
 
   onAlcoholStrengthClick(name: string) {
     const list = this.state.strengthList.slice();
-    const item = list.find(x => x.name === name)!!;
+    const item = list.find(x => x.id === name)!!;
     item.isChecked = !item.isChecked;
     this.setState({
       strengthList: list
@@ -84,7 +84,7 @@ export default class SelectScreen extends React.Component<Props, State> {
 
   onKeywordClick(name: string) {
     const list = this.state.keywordList.slice();
-    const item = list.find(x => x.name === name)!!;
+    const item = list.find(x => x.id === name)!!;
     item.isChecked = !item.isChecked;
     this.setState({
       keywordList: list
@@ -94,7 +94,7 @@ export default class SelectScreen extends React.Component<Props, State> {
   getSelectedItems() {
     const { keywordList, strengthList } = this.state;
     const list = [...keywordList, ...strengthList];
-    return list.filter(x => x.isChecked).map(x => x.name);
+    return list.filter(x => x.isChecked).map(x => x.id);
   }
 
   render() {
@@ -117,7 +117,7 @@ export default class SelectScreen extends React.Component<Props, State> {
                   marginRight: 8,
                   marginBottom: 12
                 }}
-                onClick={() => this.onKeywordClick(d.name)}
+                onClick={() => this.onKeywordClick(d.id)}
                 {...d}
               />
             ))}
@@ -127,13 +127,13 @@ export default class SelectScreen extends React.Component<Props, State> {
           <div style={sectionStyle}>
             <UISubheader>アルコールの強さ</UISubheader>
             <ItemsWrapper>
-              {strengthList.map((d: ScrollTextItemProps, index: number) => (
-                <ScrollTextItem
+              {strengthList.map((d: CheckButtonProps, index: number) => (
+                <CheckButton
                   key={index}
                   style={{
                     marginRight: 16
                   }}
-                  onClick={() => this.onAlcoholStrengthClick(d.name)}
+                  onClick={() => this.onAlcoholStrengthClick(d.id)}
                   {...d}
                 />
               ))}
