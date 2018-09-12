@@ -18,6 +18,10 @@ export class MainScreen extends React.Component<Props & RouterProps> {
     this.props.history.push("/omakase");
   }
 
+  onSelectButtonPressed() {
+    this.props.history.push("/select");
+  }
+
   render() {
     const buttonStyle: React.CSSProperties = {
       flex: 1
@@ -28,7 +32,7 @@ export class MainScreen extends React.Component<Props & RouterProps> {
         <AppHeader />
         <HeroImage />
         <ButtonWrapper>
-          <UIButton style={buttonStyle} primary onClick={() => alert("選ぶ")}>
+          <UIButton style={buttonStyle} primary onClick={this.onSelectButtonPressed.bind(this)}>
             選ぶ
           </UIButton>
           <UIButton

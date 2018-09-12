@@ -15,13 +15,14 @@ import styled from "styled-components";
 import SelectBottomBar from "../components/organisms/selectBottombar";
 import { AppHeader } from "../components/organisms/appHeader";
 import AppFooter from "../components/organisms/appFooter";
-
-interface Props {}
+import { RouterProps } from "react-router";
 
 interface SelectableItem {
   name: string;
   type: "keyword" | "strength";
 }
+
+type Props = RouterProps;
 
 interface State {
   strengthList: CheckButtonProps[];
@@ -97,6 +98,10 @@ export default class SelectScreen extends React.Component<Props, State> {
     return list.filter(x => x.isChecked).map(x => x.id);
   }
 
+  onNextButtonClicked() {
+    this.props.history.push("/items");
+  }
+
   render() {
     const { strengthList, keywordList } = this.state;
 
@@ -143,7 +148,7 @@ export default class SelectScreen extends React.Component<Props, State> {
 
         <SelectBottomBar
           selectedItems={this.getSelectedItems()}
-          onNextButtonClicked={() => console.log("次へ")}
+          onNextButtonClicked={this.onNextButtonClicked.bind(this)}
           isNextButtonEnabled={false}
         />
         <AppFooter />

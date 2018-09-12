@@ -7,11 +7,14 @@ import { SakeItem } from "../components/organisms/sakeItem";
 import { SakeDetailModal } from "../components/templates/sakeDetailModal";
 import SelectedItemsBar from "../components/organisms/selectedItemsBar";
 import { dummySakeData } from "../data/sake";
+import { RouterProps } from "react-router";
 const Rodal = require("rodal").default;
 
-interface Props {
+interface P {
   userName?: string;
 }
+
+type Props = P & RouterProps;
 
 interface State {
   isModalVisible: boolean;
@@ -65,7 +68,7 @@ export default class RecommendedScreen extends React.Component<Props, State> {
   }
 
   onNextButtonClick() {
-    console.log("go next");
+    this.props.history.push("/order");
   }
 
   render() {
