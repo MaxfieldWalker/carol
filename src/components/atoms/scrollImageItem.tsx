@@ -30,7 +30,7 @@ export const ScrollImageItem: React.StatelessComponent<
       <UIItemName
         style={{
           marginLeft: 4,
-          marginTop: 4
+          marginTop: 6
         }}
       >
         {displayName}

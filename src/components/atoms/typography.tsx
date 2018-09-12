@@ -20,8 +20,10 @@ export const UIHeader: React.StatelessComponent<Props> = props => (
 export const UISubheader: React.StatelessComponent<Props> = props => (
   <h2
     style={{
-      fontSize: 36,
-      color: Color.black
+      fontSize: 32,
+      color: Color.black,
+      marginTop: 18,
+      marginBottom: 12
     }}
   >
     {props.children}
