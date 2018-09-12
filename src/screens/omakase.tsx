@@ -4,6 +4,7 @@ import { UIHeader } from "../components/atoms/typography";
 import { OmakaseSet, Sake } from "../api/apiClient";
 import { OmakaseItem } from "../components/organisms/omakaseItem";
 import { LoadingCircle } from "../components/atoms/loadingCircle";
+import AppFooter from "../components/organisms/appFooter";
 
 interface Props {}
 
@@ -57,6 +58,7 @@ export default class OmakaseScreen extends React.Component<Props, State> {
         ) : (
           <LoadingCircle />
         )}
+        <AppFooter />
       </div>
     );
   }
