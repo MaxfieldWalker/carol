@@ -4,11 +4,13 @@ import { Sake } from "../api/types";
 import { PriceTag } from "../components/atoms/priceTag";
 import { LoadingCircle } from "../components/atoms/loadingCircle";
 import { dummySakeData } from "../data/sake";
-import ImagePlaceholder from "../components/atoms/imagePlaceholder";
 import { SakeTableCell } from "../components/organisms/sakeTableCell";
 import { UIButton } from "../components/atoms/buttons";
+import { RouterProps } from "react-router";
 
-interface Props {}
+interface P {}
+
+type Props = P & RouterProps;
 
 interface State {
   items: Sake[];
@@ -38,7 +40,7 @@ export default class OrderConfirmationScreen extends React.Component<
   }
 
   onOrderButtonClicked() {
-    console.log("Complete the order");
+    this.props.history.push("/order/requested");
   }
 
   renderContent() {

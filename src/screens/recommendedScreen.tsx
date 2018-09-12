@@ -68,7 +68,7 @@ export default class RecommendedScreen extends React.Component<Props, State> {
   }
 
   onNextButtonClick() {
-    this.props.history.push("/order");
+    this.props.history.push("/order/confirm");
   }
 
   render() {
