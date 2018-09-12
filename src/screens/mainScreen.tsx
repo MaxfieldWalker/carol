@@ -3,6 +3,7 @@ import { AppHeader } from "../components/organisms/appHeader";
 import { HeroImage } from "../components/organisms/heroImage";
 import styled from "styled-components";
 import { UIButton } from "../components/atoms/buttons";
+import AppFooter from "../components/organisms/appFooter";
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -27,6 +28,7 @@ export class MainScreen extends React.Component {
             おまかせ
           </UIButton>
         </ButtonWrapper>
+        <AppFooter />
       </div>
     );
   }

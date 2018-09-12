@@ -16,3 +16,12 @@ p {
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI",
     sans-serif;
 }
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  margin-bottom: 80px;
+}
