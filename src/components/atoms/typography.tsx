@@ -71,13 +71,14 @@ export const BodyText: React.StatelessComponent<Props> = props => (
 );
 
 export const CaptionText: React.StatelessComponent<Props> = props => (
-  <p
+  <div
     style={{
       fontSize: 14,
       color: Color.black,
-      lineHeight: "1.0em"
+      lineHeight: "1.0em",
+      ...props.style
     }}
   >
     {props.children}
-  </p>
+  </div>
 );

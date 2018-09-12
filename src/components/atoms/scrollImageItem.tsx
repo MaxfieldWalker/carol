@@ -23,7 +23,7 @@ export const ScrollImageItem: React.StatelessComponent<
     cursor: "pointer",
     padding: "12px 8px",
     backgroundColor: isChecked ? Color.orange : "transparent",
-    borderRadius: CornerRadius.Mid,
+    borderRadius: CornerRadius.mid,
     width: "auto",
     ...props.style
   };
@@ -35,7 +35,7 @@ export const ScrollImageItem: React.StatelessComponent<
         width={itemSize}
         height={itemSize}
         style={{
-          borderRadius: CornerRadius.Mid
+          borderRadius: CornerRadius.mid
         }}
       />
       <UIItemName

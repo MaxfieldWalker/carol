@@ -94,6 +94,7 @@ export default class RecommendedScreen extends React.Component<Props, State> {
                   marginRight: 8,
                   marginBottom: 12
                 }}
+                isSelected={selectedItems.findIndex(x => x.id === sake.id) >= 0}
                 onClick={() => this.onSakeItemClicked(sake)}
               />
             ))}
@@ -125,7 +126,6 @@ export default class RecommendedScreen extends React.Component<Props, State> {
           items={selectedItems}
           onNextButtonClicked={() => console.log("go next")}
         />
-        <AppFooter />
       </div>
     );
   }

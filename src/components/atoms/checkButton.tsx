@@ -33,7 +33,7 @@ export default class CheckButton extends React.Component<Props> {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      borderRadius: CornerRadius.Mid,
+      borderRadius: CornerRadius.mid,
       cursor: "pointer",
       margin: "12px 8px"
     };

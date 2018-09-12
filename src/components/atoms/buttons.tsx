@@ -15,7 +15,7 @@ export class UIButton extends React.Component<Props> {
       padding: "6px",
       height: 56,
       backgroundColor: Color.blue,
-      borderRadius: CornerRadius.Mid,
+      borderRadius: CornerRadius.mid,
       border: "1px solid gray",
       margin: "6px 12px"
     };

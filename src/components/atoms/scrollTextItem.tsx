@@ -36,7 +36,7 @@ export const CheckButton: React.StatelessComponent<
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: CornerRadius.Mid,
+    borderRadius: CornerRadius.mid,
     cursor: "pointer",
     margin: "12px 8px"
   };
