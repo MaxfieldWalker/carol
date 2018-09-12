@@ -6,6 +6,7 @@ export interface ScrollTextItemProps {
   displayName: string;
   color: string;
   isChecked: boolean;
+  onClick?: () => void;
 }
 
 export const ScrollTextItem: React.StatelessComponent<
@@ -14,14 +15,13 @@ export const ScrollTextItem: React.StatelessComponent<
   const itemWidth = 100;
   const itemHeight = 40;
 
-  const { color, isChecked, displayName } = props;
+  const { color, isChecked, displayName, onClick } = props;
 
   const uncheckedStyle: React.CSSProperties = {
     borderColor: color,
     borderWidth: 1,
     borderStyle: "solid",
-    color: Color.black,
-    borderRadius: 16
+    color: Color.black
   };
 
   const checkedStyle: React.CSSProperties = {
@@ -34,7 +34,9 @@ export const ScrollTextItem: React.StatelessComponent<
     height: itemHeight,
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    borderRadius: 16,
+    cursor: "pointer"
   };
 
   const style = {
@@ -43,9 +45,13 @@ export const ScrollTextItem: React.StatelessComponent<
   };
 
   return (
-    <div>
-      <div style={style}>
-        <div>{displayName}</div>
+    <div onClick={onClick} style={style}>
+      <div
+        style={{
+          userSelect: "none"
+        }}
+      >
+        {displayName}
       </div>
     </div>
   );
