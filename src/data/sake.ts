@@ -21,6 +21,6 @@ const data: Sake[] = [
   }
 ];
 
-export const dummySakeData = [...data, ...data, ...data, ...data].map(
+export const dummySakeData = [...data, ...data, data[0]].map(
   (x: Sake, index: number) => ({ ...x, id: index + 1 })
 );

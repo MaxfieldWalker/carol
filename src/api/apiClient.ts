@@ -11,6 +11,8 @@ import {
 
 export class ApiClient {
   private static ENDPOINT = "http://172.20.10.3:8000/api";
+  // private static ENDPOINT =
+  //   "http://ec2-18-222-108-7.us-east-2.compute.amazonaws.com:8080/sakeapp/public/api";
   private _instance: AxiosInstance;
 
   constructor() {
@@ -25,11 +27,7 @@ export class ApiClient {
     keywords: PreferenceKeyword[],
     strength?: PreferenceStrength
   ): Promise<Sake[]> {
-    const params = {
-      postCode,
-      keywords,
-      strength
-    };
+    const params = { postCode, keywords, strength };
 
     return this.createGetRequest<Sake[]>("/items", params);
   }
@@ -45,10 +43,7 @@ export class ApiClient {
     price: number,
     creditCardInfo: CreditCardInfo
   ): Promise<PayApiResponse> {
-    const data = {
-      ...creditCardInfo,
-      price
-    };
+    const data = { ...creditCardInfo, price };
 
     return await this.createPostRequest<PayApiResponse>("/pay/credit", data);
   }
