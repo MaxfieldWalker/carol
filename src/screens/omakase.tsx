@@ -5,6 +5,7 @@ import { OmakaseItem } from "../components/organisms/omakaseItem";
 import { LoadingCircle } from "../components/atoms/loadingCircle";
 import AppFooter from "../components/organisms/appFooter";
 import { OmakaseSet } from "../api/types";
+import { ApiClient } from "../api/apiClient";
 
 interface Props {}
 
@@ -22,26 +23,14 @@ export default class OmakaseScreen extends React.Component<Props, State> {
     };
   }
 
-  componentDidMount() {
-    // TODO: APIからデータ取得
-    setTimeout(() => {
-      const dummyData: OmakaseSet[] = [
-        {
-          name: "おまかせセットA",
-          price: 1000,
-          description: "夏におすすめ。お見逃しなく。",
-          items: [],
-          thumbnail: ""
-        }
-      ];
+  async componentDidMount() {
+    const client = new ApiClient();
+    const data = await client.getOmakaseSets("5630002");
 
-      this.setState({
-        items: dummyData,
-        loaded: true
-      });
-
-      console.log("hello");
-    }, 200);
+    this.setState({
+      items: data.sets,
+      loaded: true
+    });
   }
 
   render() {

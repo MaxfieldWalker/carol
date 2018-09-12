@@ -10,7 +10,7 @@ import {
 } from "./types";
 
 export class ApiClient {
-  private static ENDPOINT = "http://localhost:8080/api";
+  private static ENDPOINT = "http://172.20.10.3:8000/api";
   private _instance: AxiosInstance;
 
   constructor() {
@@ -18,10 +18,6 @@ export class ApiClient {
       baseURL: ApiClient.ENDPOINT,
       timeout: 5000
     });
-  }
-
-  async getOmakaseSets(postCode: string): Promise<OmakaseSet> {
-    return this.createGetRequest<OmakaseSet>("/omakase");
   }
 
   async getItems(
@@ -36,6 +32,10 @@ export class ApiClient {
     };
 
     return this.createGetRequest<Sake[]>("/items", params);
+  }
+
+  async getOmakaseSets(postCode: string): Promise<{ sets: OmakaseSet[] }> {
+    return this.createGetRequest<any>(`/omakase/${postCode}`);
   }
 
   /**
