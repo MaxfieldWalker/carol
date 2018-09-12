@@ -57,6 +57,15 @@ export default class SelectScreen extends React.Component<Props, State> {
     });
   }
 
+  onKeywordClick(name: string) {
+    const list = this.state.keywordList.slice();
+    const item = list.find(x => x.name === name)!!;
+    item.isChecked = !item.isChecked;
+    this.setState({
+      keywordList: list
+    });
+  }
+
   getSelectedItems() {
     const { keywordList, strengthList } = this.state;
     const list = [...keywordList, ...strengthList];
@@ -75,7 +84,11 @@ export default class SelectScreen extends React.Component<Props, State> {
         <div style={sectionStyle}>
           <UISubheader>キーワード</UISubheader>
           {keywordList.map((d: ScrollImageItemProps, index: number) => (
-            <ScrollImageItem key={index} {...d} />
+            <ScrollImageItem
+              key={index}
+              onClick={() => this.onKeywordClick(d.name)}
+              {...d}
+            />
           ))}
         </div>
         <div style={sectionStyle}>

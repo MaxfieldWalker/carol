@@ -1,24 +1,34 @@
 import * as React from "react";
 import ImagePlaceholder from "./imagePlaceholder";
 import { UIItemName } from "./typography";
+import { Color } from "../theme";
 
 export interface ScrollImageItemProps {
   imageUrl: string;
   name: string;
   displayName: string;
   isChecked: boolean;
+  onClick?: () => void;
 }
 
 export const ScrollImageItem: React.StatelessComponent<
   ScrollImageItemProps
 > = props => {
-  const { imageUrl, name, displayName, isChecked } = props;
+  const { imageUrl, name, displayName, isChecked, onClick } = props;
 
   const itemSize = 100;
 
+  const style: React.CSSProperties = {
+    cursor: "pointer",
+    padding: "12px 8px",
+    backgroundColor: isChecked ? Color.orange : "transparent",
+    borderRadius: 16,
+    width: "auto",
+    display: "inline-block"
+  };
+
   return (
-    <div>
-      <div />
+    <div style={style} onClick={onClick}>
       {imageUrl ? <img src={imageUrl} /> : null}
       <ImagePlaceholder
         width={itemSize}
