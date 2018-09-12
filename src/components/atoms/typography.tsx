@@ -1,7 +1,11 @@
 import * as React from "react";
 import { Color } from "../theme";
 
-export const UIHeader: React.StatelessComponent = props => (
+interface Props {
+  style?: React.CSSProperties;
+}
+
+export const UIHeader: React.StatelessComponent<Props> = props => (
   <h1
     style={{
       fontSize: 48,
@@ -13,7 +17,7 @@ export const UIHeader: React.StatelessComponent = props => (
   </h1>
 );
 
-export const UISubheader: React.StatelessComponent = props => (
+export const UISubheader: React.StatelessComponent<Props> = props => (
   <h2
     style={{
       fontSize: 36,
@@ -24,7 +28,20 @@ export const UISubheader: React.StatelessComponent = props => (
   </h2>
 );
 
-export const BodyText: React.StatelessComponent = props => (
+export const UIItemName: React.StatelessComponent<Props> = props => (
+  <p
+    style={{
+      fontSize: 18,
+      color: Color.black,
+      fontWeight: "bold",
+      ...props.style
+    }}
+  >
+    {props.children}
+  </p>
+);
+
+export const BodyText: React.StatelessComponent<Props> = props => (
   <p
     style={{
       fontSize: 18,
@@ -36,7 +53,7 @@ export const BodyText: React.StatelessComponent = props => (
   </p>
 );
 
-export const CaptionText: React.StatelessComponent = props => (
+export const CaptionText: React.StatelessComponent<Props> = props => (
   <p
     style={{
       fontSize: 14,

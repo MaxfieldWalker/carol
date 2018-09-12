@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 import About from "./views/about";
 import { MainScreen } from "./screens/mainScreen";
 import OmakaseScreen from "./screens/omakase";
+import SelectScreen from "./screens/selectScreen";
 
 export default class App extends React.Component {
   render() {
@@ -14,6 +15,7 @@ export default class App extends React.Component {
           <div>
             <Route exact path="/" component={MainScreen} />
             <Route exact path="/omakase" component={OmakaseScreen} />
+            <Route exact path="/select" component={SelectScreen} />
             <Route path="/about" component={About} />
           </div>
         </BrowserRouter>
