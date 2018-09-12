@@ -8,6 +8,7 @@ export enum Color {
   purple = "#800080",
   black = "#000000",
   gray = "#404040",
+  lightgray = "#d3d3d3",
   white = "#fff"
 }
 

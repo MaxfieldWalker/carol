@@ -5,6 +5,7 @@ import { UIHeader } from "../components/atoms/typography";
 import { Sake } from "../api/types";
 import { SakeItem } from "../components/organisms/sakeItem";
 import { SakeDetailModal } from "../components/templates/sakeDetailModal";
+import SelectedItemsBar from "../components/organisms/selectedItemsBar";
 const Rodal = require("rodal").default;
 
 interface Props {
@@ -107,6 +108,15 @@ export default class RecommendedScreen extends React.Component<Props, State> {
             onSelectButtonClicked={() => console.log("select clicked")}
           />
         </Rodal>
+        <SelectedItemsBar
+          style={{
+            position: "fixed",
+            bottom: 0,
+            display: "block"
+          }}
+          items={selectedItems}
+          onNextButtonClicked={() => console.log("go next")}
+        />
         <AppFooter />
       </div>
     );
