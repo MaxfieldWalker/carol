@@ -11,6 +11,7 @@ import {
 import { UISubheader } from "../components/atoms/typography";
 import { Color } from "../components/theme";
 import { SelectEffectDescriptor } from "redux-saga/effects";
+import styled from "styled-components";
 
 interface Props {}
 
@@ -24,6 +25,11 @@ interface State {
   keywordList: ScrollImageItemProps[];
 }
 
+const ItemsWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
 export default class SelectScreen extends React.Component<Props, State> {
   constructor(props: Props, state: State) {
     super(props, state);
@@ -31,20 +37,36 @@ export default class SelectScreen extends React.Component<Props, State> {
     this.state = {
       strengthList: [
         {
+          name: "unknown",
+          displayName: "わからない",
+          color: Color.gray,
+          isChecked: false
+        },
+        {
           name: "low",
           displayName: "よわめ",
           color: Color.blue,
           isChecked: false
-        }
-      ],
-      keywordList: [
+        },
         {
-          imageUrl: "",
-          name: "kankitsu",
-          displayName: "柑橘系",
+          name: "mid",
+          displayName: "ふつう",
+          color: Color.green,
+          isChecked: false
+        },
+        {
+          name: "high",
+          displayName: "つよめ",
+          color: Color.orange,
           isChecked: false
         }
-      ]
+      ],
+      keywordList: [1, 2, 3, 4, 5, 6, 7, 8, 9].map(x => ({
+        imageUrl: "",
+        name: "kankitsu" + x,
+        displayName: "柑橘系",
+        isChecked: false
+      }))
     };
   }
 
@@ -83,23 +105,36 @@ export default class SelectScreen extends React.Component<Props, State> {
       <div>
         <div style={sectionStyle}>
           <UISubheader>キーワード</UISubheader>
-          {keywordList.map((d: ScrollImageItemProps, index: number) => (
-            <ScrollImageItem
-              key={index}
-              onClick={() => this.onKeywordClick(d.name)}
-              {...d}
-            />
-          ))}
+          <ItemsWrapper>
+            {keywordList.map((d: ScrollImageItemProps, index: number) => (
+              <ScrollImageItem
+                key={index}
+                style={{
+                  marginRight: 8,
+                  marginBottom: 12
+                }}
+                onClick={() => this.onKeywordClick(d.name)}
+                {...d}
+              />
+            ))}
+          </ItemsWrapper>
         </div>
-        <div style={sectionStyle}>
-          <UISubheader>アルコールの強さ</UISubheader>
-          {strengthList.map((d: ScrollTextItemProps, index: number) => (
-            <ScrollTextItem
-              key={index}
-              onClick={() => this.onAlcoholStrengthClick(d.name)}
-              {...d}
-            />
-          ))}
+        <div>
+          <div style={sectionStyle}>
+            <UISubheader>アルコールの強さ</UISubheader>
+            <ItemsWrapper>
+              {strengthList.map((d: ScrollTextItemProps, index: number) => (
+                <ScrollTextItem
+                  key={index}
+                  style={{
+                    marginRight: 16
+                  }}
+                  onClick={() => this.onAlcoholStrengthClick(d.name)}
+                  {...d}
+                />
+              ))}
+            </ItemsWrapper>
+          </div>
         </div>
 
         <div>

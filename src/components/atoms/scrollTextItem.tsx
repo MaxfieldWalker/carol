@@ -7,6 +7,7 @@ export interface ScrollTextItemProps {
   color: string;
   isChecked: boolean;
   onClick?: () => void;
+  style?: React.CSSProperties;
 }
 
 export const ScrollTextItem: React.StatelessComponent<
@@ -36,12 +37,14 @@ export const ScrollTextItem: React.StatelessComponent<
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 16,
-    cursor: "pointer"
+    cursor: "pointer",
+    margin: "12px 8px"
   };
 
   const style = {
     ...baseStyle,
-    ...(isChecked ? checkedStyle : uncheckedStyle)
+    ...(isChecked ? checkedStyle : uncheckedStyle),
+    ...props.style
   };
 
   return (

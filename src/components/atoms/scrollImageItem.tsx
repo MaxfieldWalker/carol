@@ -8,6 +8,7 @@ export interface ScrollImageItemProps {
   name: string;
   displayName: string;
   isChecked: boolean;
+  style?: React.CSSProperties;
   onClick?: () => void;
 }
 
@@ -24,7 +25,7 @@ export const ScrollImageItem: React.StatelessComponent<
     backgroundColor: isChecked ? Color.orange : "transparent",
     borderRadius: 16,
     width: "auto",
-    display: "inline-block"
+    ...props.style
   };
 
   return (
