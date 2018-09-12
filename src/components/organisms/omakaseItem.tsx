@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Sake } from "../../api/apiClient";
 import ImagePlaceholder from "../atoms/imagePlaceholder";
+import { UISubheader, CaptionText } from "../atoms/typography";
+import { PriceTag } from "../atoms/priceTag";
 
 export interface Props {
   name: string;
@@ -29,7 +31,7 @@ export const OmakaseItem: React.StatelessComponent<Props> = props => {
             alignItems: "center"
           }}
         >
-          <p>{name}</p>
+          <UISubheader>{name}</UISubheader>
         </div>
         <div
           style={{
@@ -37,10 +39,10 @@ export const OmakaseItem: React.StatelessComponent<Props> = props => {
             alignItems: "center"
           }}
         >
-          <p>{price}円</p>
+          <PriceTag price={price} />
         </div>
       </div>
-      <p>{description}</p>
+      <CaptionText>{description}</CaptionText>
       {items.map((value: Sake, index: number) => (
         <div key={index}>
           <p>{value.name}</p>

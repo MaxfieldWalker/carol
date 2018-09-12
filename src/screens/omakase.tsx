@@ -40,7 +40,7 @@ export default class OmakaseScreen extends React.Component<Props, State> {
       });
 
       console.log("hello");
-    }, 1000);
+    }, 200);
   }
 
   render() {
