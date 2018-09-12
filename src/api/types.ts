@@ -71,6 +71,11 @@ export interface Sake {
    * 画像
    */
   imageUrl: string;
+
+  /**
+   * 説明文
+   */
+  description: string;
 }
 
 /**

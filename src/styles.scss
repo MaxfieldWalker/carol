@@ -1,4 +1,11 @@
 @import "~normalize.css/normalize.css";
+@import "~rodal/lib/rodal.css";
+
+.rodal-dialog {
+  padding: 0 !important;
+  border-radius: 16px;
+}
+
 *,
 *:before,
 *:after {

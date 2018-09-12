@@ -30,6 +30,20 @@ export const UISubheader: React.StatelessComponent<Props> = props => (
   </h2>
 );
 
+export const UILargeItemName: React.StatelessComponent<Props> = props => (
+  <p
+    style={{
+      fontSize: 24,
+      color: Color.black,
+      fontWeight: "bold",
+      letterSpacing: "0.1em",
+      ...props.style
+    }}
+  >
+    {props.children}
+  </p>
+);
+
 export const UIItemName: React.StatelessComponent<Props> = props => (
   <p
     style={{

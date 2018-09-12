@@ -1,8 +1,8 @@
 import * as React from "react";
 
 interface Props {
-  width?: number;
-  height?: number;
+  width?: number | string;
+  height?: number | string;
   style?: React.CSSProperties;
 }
 
