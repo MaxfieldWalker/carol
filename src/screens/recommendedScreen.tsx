@@ -1,6 +1,5 @@
 import * as React from "react";
 import { AppHeader } from "../components/organisms/appHeader";
-import AppFooter from "../components/organisms/appFooter";
 import { UIHeader } from "../components/atoms/typography";
 import { Sake } from "../api/types";
 import { SakeItem } from "../components/organisms/sakeItem";
@@ -65,6 +64,11 @@ export default class RecommendedScreen extends React.Component<Props, State> {
     this.setState({
       selectedItems: items
     });
+
+    setTimeout(() => {
+      // モーダルを閉じる
+      this.closeModal();
+    }, 300);
   }
 
   onNextButtonClick() {
