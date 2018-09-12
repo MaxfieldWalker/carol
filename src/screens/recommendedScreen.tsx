@@ -50,6 +50,10 @@ export default class RecommendedScreen extends React.Component<Props, State> {
 
   onSelectButtonClicked(sake: Sake) {
     const { selectedItems } = this.state;
+    if (selectedItems.length >= 4) {
+      alert("すでに4点選択しています。");
+      return;
+    }
 
     const items = selectedItems.slice();
     const index = items.findIndex(x => x.id === sake.id);
