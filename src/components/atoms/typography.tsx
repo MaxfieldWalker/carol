@@ -30,9 +30,9 @@ export const UISubheader: React.StatelessComponent<Props> = props => (
     style={{
       ...commonStyle,
       color: Color.black,
-      fontSize: 32,
+      fontSize: 28,
       marginTop: 18,
-      marginBottom: 12,
+      marginBottom: 9,
       ...props.style
     }}
   >

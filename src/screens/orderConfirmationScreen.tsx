@@ -1,5 +1,9 @@
 import * as React from "react";
-import { UIHeader } from "../components/atoms/typography";
+import {
+  UIHeader,
+  UISubheader,
+  BodyText
+} from "../components/atoms/typography";
 import { Sake } from "../api/types";
 import { PriceTag } from "../components/atoms/priceTag";
 import { LoadingCircle } from "../components/atoms/loadingCircle";
@@ -9,6 +13,7 @@ import { UIButton } from "../components/atoms/buttons";
 import { RouterProps } from "react-router";
 import { AppHeader } from "../components/organisms/appHeader";
 import { RootContainer } from "../components/atoms/rootContainer";
+import { HeaderedText } from "../components/molecules/headeredText";
 
 interface P {}
 
@@ -56,14 +61,13 @@ export default class OrderConfirmationScreen extends React.Component<
       width: "100%"
     };
 
+    const commonStyle: React.CSSProperties = {
+      margin: "3px 0"
+    };
+
     return (
       <div>
-        <table
-          style={{
-            width: "100%",
-            borderCollapse: "collapse"
-          }}
-        >
+        <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <tbody>
             {items.map((sake: Sake, index: number) => (
               <SakeTableRow key={index} number={index + 1} {...sake} />
@@ -77,18 +81,9 @@ export default class OrderConfirmationScreen extends React.Component<
             padding: "12px 0"
           }}
         >
-          <PriceTag
-            price={totalPrice}
-            style={{
-              marginRight: 4
-            }}
-          />
+          <PriceTag price={totalPrice} style={{ marginRight: 4 }} />
         </div>
-        <div
-          style={{
-            padding: "6px 0"
-          }}
-        >
+        <div style={{ padding: "12px 0" }}>
           <UIButton
             primary
             style={buttonStyle}
@@ -96,6 +91,18 @@ export default class OrderConfirmationScreen extends React.Component<
           >
             注文を確定する！
           </UIButton>
+        </div>
+        <div>
+          <HeaderedText
+            header="おとどけ先住所"
+            body="東京都世田谷区玉川１丁目１４−１"
+            style={commonStyle}
+          />
+          <HeaderedText
+            header="氏名"
+            body="Open Service Product Development"
+            style={commonStyle}
+          />
         </div>
       </div>
     );

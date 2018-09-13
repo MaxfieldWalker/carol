@@ -1,5 +1,10 @@
 import * as React from "react";
 import { UIHeader } from "../components/atoms/typography";
+import { AppHeader } from "../components/organisms/appHeader";
+import { RootContainer } from "../components/atoms/rootContainer";
+import { LoadingCircle } from "../components/atoms/loadingCircle";
+import { HeaderedText } from "../components/molecules/headeredText";
+import { UIButton } from "../components/atoms/buttons";
 
 interface Props {}
 
@@ -47,14 +52,21 @@ export default class OrderRequestedScreen extends React.Component<
       <div>
         <UIHeader>ご注文が完了しました</UIHeader>
         <div>
-          <div style={{ textAlign: "center" }}>
-            <p>ご注文番号</p>
-            <p>{orderNumber}</p>
-          </div>
-          <div>
-            <p>お届け目安時間: 約{remainingTimeInMinutes}分</p>
-            <p>提供: {storeName}</p>
-          </div>
+          <HeaderedText header="ご注文番号" body={orderNumber} />
+          <HeaderedText
+            header="お届け目安時間"
+            body={`約${remainingTimeInMinutes}分`}
+          />
+          <HeaderedText header="提供" body={storeName} />
+        </div>
+        <div
+          style={{
+            padding: "12px 0"
+          }}
+        >
+          <UIButton primary style={{ width: "100%" }}>
+            トップへ
+          </UIButton>
         </div>
       </div>
     );
@@ -64,7 +76,12 @@ export default class OrderRequestedScreen extends React.Component<
     const { isLoaded, data } = this.state;
 
     return (
-      <div>{isLoaded ? this.renderContent() : <div>処理中です...</div>}</div>
+      <div>
+        <AppHeader />
+        <RootContainer>
+          {isLoaded ? this.renderContent() : <LoadingCircle />}
+        </RootContainer>
+      </div>
     );
   }
 }
