@@ -11,6 +11,7 @@ import { dummySakeData, dummyOmakaseSetData } from "../data/sake";
 import { RootContainer } from "../components/atoms/rootContainer";
 import { ModalContainer } from "../components/atoms/modalContainer";
 import { SakeDetailModal } from "../components/templates/sakeDetailModal";
+import { OmakaseSetDetailModal } from "../components/templates/omakaseSetDetailModal";
 
 interface Props {}
 
@@ -18,6 +19,7 @@ interface State {
   items: OmakaseSet[];
   loaded: boolean;
   isModalVisible: boolean;
+  focusedItem?: OmakaseSet;
 }
 
 export default class OmakaseScreen extends React.Component<Props, State> {
@@ -33,6 +35,9 @@ export default class OmakaseScreen extends React.Component<Props, State> {
   async componentDidMount() {
     const client = new ApiClient();
     const data = await client.getOmakaseSets("2998787");
+
+    console.log("data from server:");
+    console.log(data);
 
     this.setState({
       items: data.sets,
@@ -53,8 +58,19 @@ export default class OmakaseScreen extends React.Component<Props, State> {
     });
   }
 
+  onOmakaseItemClicked(omakase: OmakaseSet) {
+    this.setState({
+      focusedItem: omakase
+    });
+    this.openModal();
+  }
+
+  onOrderButtonClicked() {
+    const omakase = this.state.focusedItem!!;
+  }
+
   render() {
-    const { items, loaded, isModalVisible } = this.state;
+    const { items, loaded, isModalVisible, focusedItem } = this.state;
 
     return (
       <div>
@@ -73,7 +89,7 @@ export default class OmakaseScreen extends React.Component<Props, State> {
                   style={{
                     marginBottom: 24
                   }}
-                  onClick={() => alert("TODO: モーダルを出すようにする")}
+                  onClick={this.onOmakaseItemClicked.bind(this)}
                 />
               ))}
             </div>
@@ -85,7 +101,12 @@ export default class OmakaseScreen extends React.Component<Props, State> {
         <ModalContainer
           visible={isModalVisible}
           onClose={this.closeModal.bind(this)}
-        />
+        >
+          <OmakaseSetDetailModal
+            {...focusedItem!!}
+            orderButtonClicked={this.onOrderButtonClicked.bind(this)}
+          />
+        </ModalContainer>
       </div>
     );
   }

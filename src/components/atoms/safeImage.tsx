@@ -2,7 +2,7 @@ import * as React from "react";
 import ImagePlaceholder from "./imagePlaceholder";
 
 interface Props {
-  source: string;
+  source?: string;
   style?: React.CSSProperties;
 }
 
