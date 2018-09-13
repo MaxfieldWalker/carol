@@ -6,9 +6,10 @@ import { UIButton } from "../components/atoms/buttons";
 import AppFooter from "../components/organisms/appFooter";
 import { withRouter, RouterProps } from "react-router";
 
-const ButtonWrapper = styled.div`
+const ButtonsWrapper = styled.div`
   display: flex;
   width: "100%";
+  padding: 12px 0;
 `;
 
 interface Props {}
@@ -31,8 +32,12 @@ export class MainScreen extends React.Component<Props & RouterProps> {
       <div>
         <AppHeader />
         <HeroImage />
-        <ButtonWrapper>
-          <UIButton style={buttonStyle} primary onClick={this.onSelectButtonPressed.bind(this)}>
+        <ButtonsWrapper>
+          <UIButton
+            style={buttonStyle}
+            primary
+            onClick={this.onSelectButtonPressed.bind(this)}
+          >
             選ぶ
           </UIButton>
           <UIButton
@@ -41,7 +46,7 @@ export class MainScreen extends React.Component<Props & RouterProps> {
           >
             おまかせ
           </UIButton>
-        </ButtonWrapper>
+        </ButtonsWrapper>
         <AppFooter />
       </div>
     );

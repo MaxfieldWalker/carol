@@ -12,27 +12,31 @@ export class HeroImage extends React.Component {
   render() {
     return (
       <Wrapper>
-        <ImagePlaceholder
+        <img
+          src="/images/hero.png"
+          height="400"
           style={{
-            position: "absolute"
+            position: "absolute",
+            opacity: 0.9
           }}
-          height={400}
         />
         <div
           style={{
             position: "absolute",
-            bottom: 0
+            left: 16,
+            bottom: 16
           }}
         >
           <h2
             style={{
               color: "#fff",
-              fontSize: 48,
-              fontWeight: "bold"
+              fontSize: 42,
+              fontWeight: "bold",
+              textShadow: "-2px 2px 3px rgba(0,0,0,0.3)"
             }}
           >
-            お酒のハードルを <br />
-            グッと下げます
+            おうちで飲める。 <br />
+            スピーディーにお届け。
           </h2>
         </div>
       </Wrapper>

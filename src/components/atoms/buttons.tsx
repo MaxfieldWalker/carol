@@ -14,20 +14,29 @@ export class UIButton extends React.Component<Props> {
     const { primary, disabled, onClick } = this.props;
 
     const basicStyle: React.CSSProperties = {
-      padding: "6px",
-      height: 56,
       borderRadius: CornerRadius.mid,
-      border: "1px solid gray",
-      margin: "6px 12px"
+      border: `3px solid ${Color.foreground}`,
+      margin: "6px 12px",
+      fontSize: "24px",
+      padding: "9px 12px",
+      backgroundColor: "transparent",
+      color: Color.foreground
+    };
+
+    const disabledStyle: React.CSSProperties = {
+      opacity: 0.8
+    };
+
+    const primaryStyle: React.CSSProperties = {
+      backgroundColor: Color.accent,
+      border: "none",
+      boxShadow: "0 0 4px 4px #00000010"
     };
 
     const s: React.CSSProperties = {
       ...basicStyle,
-      backgroundColor: disabled
-        ? Color.lightgray
-        : primary
-          ? Color.orange
-          : Color.blue
+      ...(primary ? primaryStyle : {}),
+      ...(disabled ? disabledStyle : {})
     };
 
     return (
