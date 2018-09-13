@@ -1,6 +1,8 @@
 import * as React from "react";
 import styled from "styled-components";
 import { Color } from "../theme";
+import { RouterProps } from "../../util/router";
+import { withRouter, RouteComponentProps } from "react-router";
 
 const Wrapper = styled.div`
   display: flex;
@@ -31,14 +33,25 @@ const AppName = styled.span`
   background: linear-gradient(transparent 40%, ${Color.underline} 40%);
 `;
 
-export class AppHeader extends React.Component {
+interface Props {}
+
+type P = Props & RouterProps & RouteComponentProps<Props>;
+
+class AppHeader2 extends React.Component<P> {
+  onAppNameClick() {
+    history;
+    this.props.history.push("/");
+  }
+
   render() {
     return (
       <Wrapper>
-        <div>
+        <div onClick={this.onAppNameClick.bind(this)}>
           <AppName>おさけフレンズ</AppName>
         </div>
       </Wrapper>
     );
   }
 }
+
+export const AppHeader = withRouter(AppHeader2);
