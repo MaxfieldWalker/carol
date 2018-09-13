@@ -42,7 +42,7 @@ export const ScrollImageItem: React.StatelessComponent<
             borderRadius: CornerRadius.mid
           }}
         />
-        {isChecked ? <Checkmark content="きになる" /> : null}
+        {isChecked ? <Checkmark content="選択済み✓" /> : null}
       </div>
       <UIItemName
         style={{
