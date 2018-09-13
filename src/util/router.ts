@@ -10,3 +10,8 @@ export interface NavigateToOrderConfirmationContext {
    */
   autoFilled: boolean;
 }
+
+export interface NavigateToRecommendedItemsContext {
+  selectedKeywords: string[];
+  selectedAlcoholStrength: string[];
+}

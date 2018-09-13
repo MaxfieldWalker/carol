@@ -16,6 +16,8 @@ import { RootContainer } from "../components/atoms/rootContainer";
 import { dummyKeywordList, alcoholStrengthList } from "../data/keywords";
 import { buffy } from "../util/array";
 import { BottomBarLocator } from "../components/atoms/bottomBarLocator";
+import { ApiClient } from "../api/apiClient";
+import { NavigateToRecommendedItemsContext } from "../util/router";
 
 type Props = RouterProps;
 
@@ -51,7 +53,7 @@ export default class SelectScreen extends React.Component<Props, State> {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     setTimeout(() => {
       this.setState({
         isLoaded: true
@@ -77,14 +79,28 @@ export default class SelectScreen extends React.Component<Props, State> {
     });
   }
 
+  getSelectedKeywords() {
+    return this.state.keywordList.filter(x => x.isChecked).map(x => x.name);
+  }
+
+  getSelectedStrength() {
+    return this.state.strengthList.filter(x => x.isChecked).map(x => x.id);
+  }
+
   getSelectedItems() {
-    const { keywordList, strengthList } = this.state;
-    const list = [...keywordList, ...strengthList];
-    return list.filter(x => x.isChecked).map(x => x.name);
+    return [...this.getSelectedKeywords(), ...this.getSelectedStrength()];
   }
 
   onNextButtonClicked() {
-    this.props.history.push("/items");
+    const context: NavigateToRecommendedItemsContext = {
+      selectedKeywords: this.getSelectedKeywords(),
+      selectedAlcoholStrength: this.getSelectedStrength()
+    };
+
+    this.props.history.push({
+      pathname: "/items",
+      state: context
+    });
   }
 
   renderKeywords() {

@@ -6,7 +6,7 @@ import { SakeItem } from "../components/organisms/sakeItem";
 import { SakeDetailModal } from "../components/templates/sakeDetailModal";
 import SelectedItemsBar from "../components/organisms/selectedItemsBar";
 import { dummySakeData } from "../data/sake";
-import { RouterProps } from "react-router";
+import { RouterProps, RouteProps } from "react-router";
 import { RootContainer } from "../components/atoms/rootContainer";
 import { buffy } from "../util/array";
 import styled from "styled-components";
@@ -14,14 +14,17 @@ import { LoadingCircle } from "../components/atoms/loadingCircle";
 import { ApiClient } from "../api/apiClient";
 import { BottomBarLocator } from "../components/atoms/bottomBarLocator";
 import { ModalContainer } from "../components/atoms/modalContainer";
-import { NavigateToOrderConfirmationContext } from "../util/router";
+import {
+  NavigateToOrderConfirmationContext,
+  NavigateToRecommendedItemsContext
+} from "../util/router";
 const Rodal = require("rodal").default;
 
 interface P {
   userName?: string;
 }
 
-type Props = P & RouterProps;
+type Props = P & RouterProps & RouteProps;
 
 interface State {
   isModalVisible: boolean;
@@ -63,12 +66,28 @@ export default class RecommendedScreen extends React.Component<Props, State> {
     //   items: result.items
     // });
 
-    setTimeout(() => {
-      this.setState({
-        isLoaded: true,
-        items: dummySakeData
-      });
-    }, 300);
+    const api = new ApiClient();
+    // 選択したキーワードをパラメータでとってくる必要がある。
+
+    if (!this.props.location) throw "おかしい";
+
+    const context = this.props.location
+      .state as NavigateToRecommendedItemsContext;
+
+    const { selectedAlcoholStrength, selectedKeywords } = context;
+
+    const result = await api.getItems(
+      "2771234",
+      selectedKeywords,
+      selectedAlcoholStrength
+    );
+
+    console.log(result);
+
+    this.setState({
+      isLoaded: true,
+      items: result.items
+    });
   }
 
   onSakeItemClicked(sake: Sake) {
@@ -127,7 +146,7 @@ export default class RecommendedScreen extends React.Component<Props, State> {
   renderItems() {
     const { selectedItems } = this.state;
 
-    return buffy(dummySakeData, 2).map((row: Sake[], index1: number) => (
+    return buffy(this.state.items, 2).map((row: Sake[], index1: number) => (
       <ItemsWrapper key={index1}>
         {row.map((sake: Sake, index2: number) => (
           <SakeItem

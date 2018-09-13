@@ -36,8 +36,8 @@ export class ApiClient {
    */
   async getItems(
     postcode: string,
-    keyword: PreferenceKeyword[],
-    strength: PreferenceStrength[]
+    keyword: string[],
+    strength: string[]
   ): Promise<GetItemsResponse> {
     const params = {
       postcode,
