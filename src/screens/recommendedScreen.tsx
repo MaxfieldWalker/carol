@@ -147,6 +147,8 @@ export default class RecommendedScreen extends React.Component<Props, State> {
     const isCurrentFocusedItemSelected =
       selectedItems.findIndex(x => x.id === sake.id) >= 0;
 
+    const anyItemSelected = selectedItems.length > 0;
+
     return (
       <div>
         <AppHeader />
@@ -174,13 +176,15 @@ export default class RecommendedScreen extends React.Component<Props, State> {
             onSelectButtonClicked={() => this.onSelectButtonClicked(sake)}
           />
         </Rodal>
-        <BottomBarLocator>
-          <SelectedItemsBar
-            style={{ position: "fixed", bottom: 0, display: "block" }}
-            items={selectedItems}
-            onNextButtonClicked={this.onNextButtonClick.bind(this)}
-          />
-        </BottomBarLocator>
+        {anyItemSelected ? (
+          <BottomBarLocator>
+            <SelectedItemsBar
+              style={{ position: "fixed", bottom: 0, display: "block" }}
+              items={selectedItems}
+              onNextButtonClicked={this.onNextButtonClick.bind(this)}
+            />
+          </BottomBarLocator>
+        ) : null}
       </div>
     );
   }
