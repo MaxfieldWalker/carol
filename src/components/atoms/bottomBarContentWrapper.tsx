@@ -1,11 +1,17 @@
 import * as React from "react";
 import { CornerRadius, Color } from "../theme";
 
-export const BottomBarUpperContentWrapper: React.StatelessComponent = props => {
+interface P1 {
+  style?: React.CSSProperties;
+}
+
+export const BottomBarUpperContentWrapper: React.StatelessComponent<
+  P1
+> = props => {
   return (
     <div
       style={{
-        height: 100,
+        // height: 100,
         backgroundColor: Color.white,
         position: "relative",
         overflow: "scroll",
@@ -16,7 +22,8 @@ export const BottomBarUpperContentWrapper: React.StatelessComponent = props => {
         // borderBottomRightRadius: CornerRadius.mid,
         // marginBottom: -CornerRadius.mid,
         zIndex: 1,
-        padding: `${CornerRadius.mid + -4}px ${CornerRadius.mid + 4}px`
+        padding: `${CornerRadius.mid + -4}px ${CornerRadius.mid + 4}px`,
+        ...props.style
       }}
     >
       {props.children}

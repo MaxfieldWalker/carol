@@ -40,12 +40,14 @@ export default class SelectedItemsBar extends React.Component<Props> {
     return (
       <BottomBarWrapper>
         <BottomBarContainer>
-          <BottomBarUpperContentWrapper>
+          <BottomBarUpperContentWrapper
+            style={{ display: "flex", alignItems: "center" }}
+          >
             <div
               style={{
                 overflowX: "auto",
                 whiteSpace: "nowrap",
-                padding: "12px 0"
+                padding: "3px 0"
               }}
             >
               {items.map((x: Sake, index: number) => (
