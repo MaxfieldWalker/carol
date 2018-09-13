@@ -90,7 +90,8 @@ export enum PreferenceKeyword {
   // さわやか
   "sawayaka",
   // 柑橘系
-  "kankitsu"
+  "kankitsu",
+  "オレンジ"
 }
 
 export enum PreferenceStrength {

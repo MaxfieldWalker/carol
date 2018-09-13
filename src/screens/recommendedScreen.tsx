@@ -1,7 +1,7 @@
 import * as React from "react";
 import { AppHeader } from "../components/organisms/appHeader";
 import { UIHeader } from "../components/atoms/typography";
-import { Sake } from "../api/types";
+import { Sake, PreferenceKeyword, PreferenceStrength } from "../api/types";
 import { SakeItem } from "../components/organisms/sakeItem";
 import { SakeDetailModal } from "../components/templates/sakeDetailModal";
 import SelectedItemsBar from "../components/organisms/selectedItemsBar";
@@ -10,6 +10,8 @@ import { RouterProps } from "react-router";
 import { RootContainer } from "../components/atoms/rootContainer";
 import { buffy } from "../util/array";
 import styled from "styled-components";
+import { LoadingCircle } from "../components/atoms/loadingCircle";
+import { ApiClient } from "../api/apiClient";
 const Rodal = require("rodal").default;
 
 interface P {
@@ -22,6 +24,8 @@ interface State {
   isModalVisible: boolean;
   focusedItem?: Sake;
   selectedItems: Sake[];
+  items: Sake[];
+  isLoaded: boolean;
 }
 
 const ItemsWrapper = styled.div`
@@ -37,8 +41,31 @@ export default class RecommendedScreen extends React.Component<Props, State> {
     this.state = {
       isModalVisible: false,
       focusedItem: undefined,
-      selectedItems: []
+      selectedItems: [],
+      items: [],
+      isLoaded: false
     };
+  }
+
+  async componentDidMount() {
+    // const api = new ApiClient();
+
+    // const result = await api.getItems(
+    //   "2998787",
+    //   [PreferenceKeyword.オレンジ],
+    //   [PreferenceStrength.low, PreferenceStrength.mid, PreferenceStrength.high]
+    // );
+    // this.setState({
+    //   isLoaded: true,
+    //   items: result.items
+    // });
+
+    setTimeout(() => {
+      this.setState({
+        isLoaded: true,
+        items: dummySakeData
+      });
+    }, 300);
   }
 
   onSakeItemClicked(sake: Sake) {
@@ -87,9 +114,33 @@ export default class RecommendedScreen extends React.Component<Props, State> {
     this.props.history.push("/order/confirm");
   }
 
+  renderItems() {
+    const { selectedItems } = this.state;
+
+    return buffy(dummySakeData, 2).map((row: Sake[], index1: number) => (
+      <ItemsWrapper key={index1}>
+        {row.map((sake: Sake, index2: number) => (
+          <SakeItem
+            key={index1 * 2 + index2}
+            {...sake}
+            displayName={sake.name}
+            isSelected={selectedItems.findIndex(x => x.id === sake.id) >= 0}
+            onClick={() => this.onSakeItemClicked(sake)}
+          />
+        ))}
+      </ItemsWrapper>
+    ));
+  }
+
   render() {
     const { userName } = this.props;
-    const { isModalVisible, focusedItem, selectedItems } = this.state;
+    const {
+      isModalVisible,
+      focusedItem,
+      selectedItems,
+      items,
+      isLoaded
+    } = this.state;
 
     const sake = focusedItem!!;
     const isCurrentFocusedItemSelected =
@@ -102,21 +153,8 @@ export default class RecommendedScreen extends React.Component<Props, State> {
           <UIHeader>
             {userName ? userName + "さんへのおすすめ" : "あなたへのおすすめ"}
           </UIHeader>
-          {buffy(dummySakeData, 2).map((row: Sake[], index1: number) => (
-            <ItemsWrapper key={index1}>
-              {row.map((sake: Sake, index2: number) => (
-                <SakeItem
-                  key={index1 * 2 + index2}
-                  {...sake}
-                  displayName={sake.name}
-                  isSelected={
-                    selectedItems.findIndex(x => x.id === sake.id) >= 0
-                  }
-                  onClick={() => this.onSakeItemClicked(sake)}
-                />
-              ))}
-            </ItemsWrapper>
-          ))}
+
+          {isLoaded ? this.renderItems() : <LoadingCircle />}
         </RootContainer>
 
         <Rodal
