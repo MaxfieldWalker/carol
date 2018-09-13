@@ -5,8 +5,11 @@ import { RootContainer } from "../components/atoms/rootContainer";
 import { LoadingCircle } from "../components/atoms/loadingCircle";
 import { HeaderedText } from "../components/molecules/headeredText";
 import { UIButton } from "../components/atoms/buttons";
+import { RouterProps } from "../util/router";
 
 interface Props {}
+
+type P = Props & RouterProps;
 
 interface State {
   isLoaded: boolean;
@@ -17,11 +20,8 @@ interface State {
   };
 }
 
-export default class OrderRequestedScreen extends React.Component<
-  Props,
-  State
-> {
-  constructor(props: Props, state: State) {
+export default class OrderRequestedScreen extends React.Component<P, State> {
+  constructor(props: P, state: State) {
     super(props, state);
 
     this.state = {
@@ -40,6 +40,10 @@ export default class OrderRequestedScreen extends React.Component<
         }
       });
     }, 1000);
+  }
+
+  onNavigateToTopButton() {
+    this.props.history.push("/");
   }
 
   renderContent() {
@@ -64,7 +68,11 @@ export default class OrderRequestedScreen extends React.Component<
             padding: "12px 0"
           }}
         >
-          <UIButton primary style={{ width: "100%" }}>
+          <UIButton
+            primary
+            style={{ width: "100%" }}
+            onClick={this.onNavigateToTopButton.bind(this)}
+          >
             トップへ
           </UIButton>
         </div>
