@@ -10,7 +10,13 @@ export const SafeImage: React.StatelessComponent<Props> = props => {
   const { source, style } = props;
 
   return props.source ? (
-    <img src={source} style={style} />
+    <img
+      src={source}
+      style={{
+        objectFit: "fill",
+        ...style
+      }}
+    />
   ) : (
     <ImagePlaceholder style={style} />
   );

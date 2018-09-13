@@ -16,9 +16,6 @@ interface Props {
 
 export const OmakaseSetDetailModal: React.StatelessComponent<Props> = props => {
   const { thumbnail, name, price, description, orderButtonClicked } = props;
-  console.log("opening omakase set detail modal");
-
-  console.log(props);
 
   return (
     <ImageModalWrapper image={thumbnail}>

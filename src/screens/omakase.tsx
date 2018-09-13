@@ -12,8 +12,11 @@ import { RootContainer } from "../components/atoms/rootContainer";
 import { ModalContainer } from "../components/atoms/modalContainer";
 import { SakeDetailModal } from "../components/templates/sakeDetailModal";
 import { OmakaseSetDetailModal } from "../components/templates/omakaseSetDetailModal";
+import { RouterProps } from "react-router";
 
 interface Props {}
+
+type P = Props & RouterProps;
 
 interface State {
   items: OmakaseSet[];
@@ -22,8 +25,8 @@ interface State {
   focusedItem?: OmakaseSet;
 }
 
-export default class OmakaseScreen extends React.Component<Props, State> {
-  constructor(props: Props, state: State) {
+export default class OmakaseScreen extends React.Component<P, State> {
+  constructor(props: P, state: State) {
     super(props, state);
     this.state = {
       items: [],
@@ -66,6 +69,7 @@ export default class OmakaseScreen extends React.Component<Props, State> {
 
   onOrderButtonClicked() {
     const omakase = this.state.focusedItem!!;
+    this.props.history.push("/order/confirm");
   }
 
   render() {
