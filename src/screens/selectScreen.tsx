@@ -22,6 +22,7 @@ type Props = RouterProps;
 interface State {
   strengthList: CheckButtonProps[];
   keywordList: ScrollImageItemProps[];
+  isLoaded: boolean;
 }
 
 const ItemsWrapper = styled.div`
@@ -35,14 +36,27 @@ const AlcoholStrengthButtonWrapper = styled.div`
   justify-content: space-between;
 `;
 
+const sectionStyle: React.CSSProperties = {
+  margin: "16px 0"
+};
+
 export default class SelectScreen extends React.Component<Props, State> {
   constructor(props: Props, state: State) {
     super(props, state);
 
     this.state = {
       strengthList: alcoholStrengthList,
-      keywordList: dummyKeywordList
+      keywordList: dummyKeywordList,
+      isLoaded: false
     };
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        isLoaded: true
+      });
+    }, 200);
   }
 
   onAlcoholStrengthClick(name: string) {
@@ -73,58 +87,69 @@ export default class SelectScreen extends React.Component<Props, State> {
     this.props.history.push("/items");
   }
 
+  renderKeywords() {
+    const { keywordList } = this.state;
+    return (
+      <div style={sectionStyle}>
+        <UISubheader>キーワード</UISubheader>
+        {buffy(keywordList, 3).map(
+          (row: ScrollImageItemProps[], index1: number) => (
+            <ItemsWrapper key={index1}>
+              {row.map((d: ScrollImageItemProps, index2: number) => (
+                <ScrollImageItem
+                  key={index1 * 3 + index2}
+                  onClick={() => this.onKeywordClick(d.id)}
+                  {...d}
+                />
+              ))}
+            </ItemsWrapper>
+          )
+        )}
+        <ItemsWrapper />
+      </div>
+    );
+  }
+
+  get anyItemSelected() {
+    return this.getSelectedItems().length > 0;
+  }
+
+  renderStrength() {
+    const { strengthList } = this.state;
+
+    return (
+      <div style={sectionStyle}>
+        <div
+          style={{
+            marginBottom: this.anyItemSelected ? 170 : 0
+          }}
+        >
+          <UISubheader>アルコールの強さ</UISubheader>
+          <AlcoholStrengthButtonWrapper>
+            {strengthList.map((d: CheckButtonProps, index: number) => (
+              <CheckButton
+                key={index}
+                onClick={() => this.onAlcoholStrengthClick(d.id)}
+                {...d}
+              />
+            ))}
+          </AlcoholStrengthButtonWrapper>
+        </div>
+      </div>
+    );
+  }
+
   render() {
-    const { strengthList, keywordList } = this.state;
-
-    const sectionStyle: React.CSSProperties = {
-      margin: "32px 0"
-    };
-
-    const anyItemSelected = this.getSelectedItems().length > 0;
-
     return (
       <div>
         <AppHeader />
         <RootContainer>
-          <div style={sectionStyle}>
-            <UIHeader style={{}}>えらぶ</UIHeader>
-            <UISubheader>キーワード</UISubheader>
-            {buffy(keywordList, 3).map(
-              (row: ScrollImageItemProps[], index1: number) => (
-                <ItemsWrapper key={index1}>
-                  {row.map((d: ScrollImageItemProps, index2: number) => (
-                    <ScrollImageItem
-                      key={index1 * 3 + index2}
-                      onClick={() => this.onKeywordClick(d.id)}
-                      {...d}
-                    />
-                  ))}
-                </ItemsWrapper>
-              )
-            )}
-            <ItemsWrapper />
-          </div>
-          <div style={sectionStyle}>
-            <div
-              style={{
-                marginBottom: anyItemSelected ? 220 : 0
-              }}
-            >
-              <UISubheader>アルコールの強さ</UISubheader>
-              <AlcoholStrengthButtonWrapper>
-                {strengthList.map((d: CheckButtonProps, index: number) => (
-                  <CheckButton
-                    key={index}
-                    onClick={() => this.onAlcoholStrengthClick(d.id)}
-                    {...d}
-                  />
-                ))}
-              </AlcoholStrengthButtonWrapper>
-            </div>
-          </div>
+          <UIHeader>えらぶ</UIHeader>
+          {this.renderKeywords()}
+          {this.renderStrength()}
         </RootContainer>
 
-        {anyItemSelected ? (
+        {this.anyItemSelected ? (
           <BottomBarLocator>
             <SelectBottomBar
               selectedItems={this.getSelectedItems()}

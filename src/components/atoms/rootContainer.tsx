@@ -4,7 +4,7 @@ export const RootContainer: React.StatelessComponent = props => {
   return (
     <div
       style={{
-        padding: "0 12px"
+        padding: "6px 12px"
       }}
     >
       {props.children}
