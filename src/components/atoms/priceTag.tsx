@@ -4,6 +4,7 @@ import { Color } from "../theme";
 
 interface Props {
   price: number;
+  style?: React.CSSProperties;
 }
 
 const Price = styled.span`
@@ -18,10 +19,11 @@ const Yen = styled.span`
 `;
 
 export const PriceTag: React.StatelessComponent<Props> = props => {
-  const format = props.price.toLocaleString();
+  const { price, style } = props;
+  const format = price.toLocaleString();
 
   return (
-    <div>
+    <div style={style}>
       <Price>{format}</Price>
       <Yen>円</Yen>
     </div>

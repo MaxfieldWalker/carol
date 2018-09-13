@@ -11,7 +11,6 @@ export const BottomBarUpperContentWrapper: React.StatelessComponent<
   return (
     <div
       style={{
-        // height: 100,
         backgroundColor: Color.white,
         position: "relative",
         overflow: "scroll",

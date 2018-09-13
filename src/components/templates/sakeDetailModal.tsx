@@ -47,8 +47,6 @@ export const SakeDetailModal: React.StatelessComponent<Props> = props => {
     <div>
       <SafeImage
         source={image}
-        width="100%"
-        height="200px"
         style={{
           width: "100%",
           height: 200,

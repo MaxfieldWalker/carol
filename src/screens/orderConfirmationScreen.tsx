@@ -4,9 +4,11 @@ import { Sake } from "../api/types";
 import { PriceTag } from "../components/atoms/priceTag";
 import { LoadingCircle } from "../components/atoms/loadingCircle";
 import { dummySakeData } from "../data/sake";
-import { SakeTableCell } from "../components/organisms/sakeTableCell";
+import { SakeTableRow } from "../components/organisms/sakeTableCell";
 import { UIButton } from "../components/atoms/buttons";
 import { RouterProps } from "react-router";
+import { AppHeader } from "../components/organisms/appHeader";
+import { RootContainer } from "../components/atoms/rootContainer";
 
 interface P {}
 
@@ -51,48 +53,48 @@ export default class OrderConfirmationScreen extends React.Component<
       .reduce((p1: number, p2: number) => p1 + p2);
 
     const buttonStyle: React.CSSProperties = {
-      flex: 1
+      width: "100%"
     };
 
     return (
       <div>
         <table
           style={{
-            width: "100%"
+            width: "100%",
+            borderCollapse: "collapse"
           }}
         >
           <tbody>
             {items.map((sake: Sake, index: number) => (
-              <SakeTableCell key={index} number={index + 1} {...sake} />
+              <SakeTableRow key={index} number={index + 1} {...sake} />
             ))}
           </tbody>
         </table>
         <div
           style={{
             display: "flex",
-            justifyContent: "flex-end"
+            justifyContent: "flex-end",
+            padding: "12px 0"
           }}
         >
-          <PriceTag price={totalPrice} />
+          <PriceTag
+            price={totalPrice}
+            style={{
+              marginRight: 4
+            }}
+          />
         </div>
         <div
           style={{
-            display: "flex",
-            width: "100%"
+            padding: "6px 0"
           }}
         >
-          <UIButton
-            style={buttonStyle}
-            onClick={() => console.log("going back")}
-          >
-            もどる
-          </UIButton>
           <UIButton
             primary
             style={buttonStyle}
             onClick={this.onOrderButtonClicked.bind(this)}
           >
-            注文する
+            注文を確定する！
           </UIButton>
         </div>
       </div>
@@ -102,8 +104,12 @@ export default class OrderConfirmationScreen extends React.Component<
   render() {
     return (
       <div>
-        <UIHeader>内容の確認</UIHeader>
-        {this.state.isLoaded ? this.renderContent() : <LoadingCircle />}
+        <AppHeader />
+        <RootContainer>
+          <UIHeader>内容の確認</UIHeader>
+
+          {this.state.isLoaded ? this.renderContent() : <LoadingCircle />}
+        </RootContainer>
       </div>
     );
   }
