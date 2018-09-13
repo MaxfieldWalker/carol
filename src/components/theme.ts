@@ -9,7 +9,10 @@ export enum Color {
   black = "#000000",
   gray = "#404040",
   lightgray = "#d3d3d3",
-  white = "#fff"
+  white = "#fff",
+  foreground = "#523115",
+  background = "#FDFBF1",
+  underline = "#FBF080"
 }
 
 export enum CornerRadius {
