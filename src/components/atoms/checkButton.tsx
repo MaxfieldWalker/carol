@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Color, CornerRadius } from "../theme";
+import { Color, CornerRadius, BorderWidth } from "../theme";
 
 interface Props {
   isChecked: boolean;
@@ -17,7 +17,7 @@ export default class CheckButton extends React.Component<Props> {
 
     const uncheckedStyle: React.CSSProperties = {
       borderColor: color,
-      borderWidth: 1,
+      borderWidth: BorderWidth.mid,
       borderStyle: "solid",
       color: color
     };
@@ -29,13 +29,11 @@ export default class CheckButton extends React.Component<Props> {
 
     const baseStyle: React.CSSProperties = {
       width: "auto",
-      height: 40,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       borderRadius: CornerRadius.mid,
-      cursor: "pointer",
-      margin: "12px 8px"
+      cursor: "pointer"
     };
 
     const mergedStyle = {
@@ -45,13 +43,20 @@ export default class CheckButton extends React.Component<Props> {
     };
 
     return (
-      <div onClick={onClick} style={mergedStyle}>
-        <div
-          style={{
-            userSelect: "none"
-          }}
-        >
-          {name}
+      <div
+        onClick={onClick}
+        style={{
+          ...mergedStyle,
+          userSelect: "none",
+          textAlign: "center",
+          padding: "8px 12px"
+        }}
+      >
+        <div>
+          {/*必要*/}
+          {name.split("\n").map((x: string, index: number) => (
+            <p key={index}>{x}</p>
+          ))}
         </div>
       </div>
     );

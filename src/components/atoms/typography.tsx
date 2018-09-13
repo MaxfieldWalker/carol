@@ -43,7 +43,7 @@ export const UISubheader: React.StatelessComponent<Props> = props => (
 export const UILargeItemName: React.StatelessComponent<Props> = props => (
   <p
     style={{
-      fontSize: 24,
+      fontSize: 28,
       color: Color.black,
       fontWeight: "bold",
       letterSpacing: "0.1em",

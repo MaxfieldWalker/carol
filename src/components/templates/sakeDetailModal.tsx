@@ -1,10 +1,11 @@
 import * as React from "react";
 import ImagePlaceholder from "../atoms/imagePlaceholder";
-import { UISubheader, UILargeItemName } from "../atoms/typography";
+import { UISubheader, UILargeItemName, CaptionText } from "../atoms/typography";
 import { UIButton } from "../atoms/buttons";
 import CheckButton from "../atoms/checkButton";
 import { Color } from "../theme";
 import styled from "styled-components";
+import { SafeImage } from "../atoms/safeImage";
 
 interface Props {
   name: string;
@@ -15,7 +16,20 @@ interface Props {
   onSelectButtonClicked: () => void;
 }
 
-// const NameAndButtonRow = styled.
+const NameAndButtonRow = styled.div`
+  padding: 9px 9px;
+  display: flex;
+  align-items: flex-start;
+  height: 80px;
+`;
+
+const DescriptionRow = styled.div`
+  padding: 9px 9px;
+`;
+
+const ContentWrapper = styled.div`
+  padding: 9px 9px;
+`;
 
 export const SakeDetailModal: React.StatelessComponent<Props> = props => {
   const {
@@ -27,23 +41,23 @@ export const SakeDetailModal: React.StatelessComponent<Props> = props => {
     onSelectButtonClicked
   } = props;
 
+  console.log(props);
+
   return (
     <div>
-      <ImagePlaceholder
+      <SafeImage
+        source={image}
         width="100%"
         height="200px"
         style={{
+          width: "100%",
+          height: 200,
           borderTopLeftRadius: 16,
           borderTopRightRadius: 16
         }}
       />
-      <div style={{ padding: 9 }}>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "flex-start"
-          }}
-        >
+      <ContentWrapper>
+        <NameAndButtonRow>
           <div style={{ flex: 1 }}>
             <UILargeItemName>{name}</UILargeItemName>
           </div>
@@ -52,15 +66,16 @@ export const SakeDetailModal: React.StatelessComponent<Props> = props => {
               isChecked={isSelected}
               color={Color.blue}
               checkedColor={Color.orange}
-              name="追加する"
+              name={`追加する\n${price}円`}
               checkedName="追加済み"
               onClick={onSelectButtonClicked}
             />
           </div>
-        </div>
-        <div>{price}円</div>
-        <div>{description}</div>
-      </div>
+        </NameAndButtonRow>
+        <DescriptionRow>
+          <CaptionText>{description}</CaptionText>
+        </DescriptionRow>
+      </ContentWrapper>
     </div>
   );
 };

@@ -21,3 +21,8 @@ export enum CornerRadius {
   mid = 16,
   large = 20
 }
+
+export enum BorderWidth {
+  small = 1,
+  mid = 3
+}
