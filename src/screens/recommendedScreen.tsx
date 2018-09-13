@@ -133,8 +133,11 @@ export default class RecommendedScreen extends React.Component<Props, State> {
   }
 
   onNextButtonClick() {
+    const { selectedItems } = this.state;
+
     const state: NavigateToOrderConfirmationContext = {
-      autoFilled: this.state.selectedItems.length < 5
+      autoFilled: selectedItems.length < 5,
+      item_id: selectedItems.map(x => x.id)
     };
 
     this.props.history.push({

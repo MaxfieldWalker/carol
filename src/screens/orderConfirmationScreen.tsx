@@ -16,6 +16,7 @@ import { AppHeader } from "../components/organisms/appHeader";
 import { RootContainer } from "../components/atoms/rootContainer";
 import { HeaderedText } from "../components/molecules/headeredText";
 import { NavigateToOrderConfirmationContext } from "../util/router";
+import { ApiClient } from "../api/apiClient";
 
 interface P {}
 
@@ -48,13 +49,19 @@ export default class OrderConfirmationScreen extends React.Component<
     };
   }
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        items: dummySakeData,
-        isLoaded: true
-      });
-    }, 2000);
+  async componentDidMount() {
+    const api = new ApiClient();
+
+    if (!this.props.location) throw "おかしい";
+
+    const context = this.props.location
+      .state as NavigateToOrderConfirmationContext;
+    const result = await api.purchase(context.item_id);
+
+    this.setState({
+      items: result.items,
+      isLoaded: true
+    });
   }
 
   onOrderButtonClicked() {

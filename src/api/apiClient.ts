@@ -97,7 +97,20 @@ export class ApiClient {
    */
   async purchase(item_id: number[]): Promise<PurchaseResponse> {
     const params = { item_id: item_id.join(",") };
-    return this.createGetRequest<PurchaseResponse>("/purchase", params);
+    const result = await this.createGetRequest<PurchaseResponse>(
+      "/purchase",
+      params
+    );
+
+    const actual: PurchaseResponse = {
+      ...result,
+      items: result.items.map(x => ({
+        ...x,
+        image_url: this.resolveImageUrl(x.image_url)
+      }))
+    };
+
+    return actual;
   }
 
   /**
