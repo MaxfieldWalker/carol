@@ -5,6 +5,7 @@ import { RouterProps } from "../../util/router";
 import { withRouter, RouteComponentProps } from "react-router";
 
 const Wrapper = styled.div`
+  position: relative;
   display: flex;
   width: 100%;
   height: 60px;
@@ -48,6 +49,34 @@ class AppHeader2 extends React.Component<P> {
       <Wrapper>
         <div onClick={this.onAppNameClick.bind(this)}>
           <AppName>おさけフレンズ</AppName>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            top: 0,
+            left: 0
+          }}
+        >
+          <div
+            style={{
+              marginRight: 16
+            }}
+          >
+            <img
+              src="/images/avatar.jpg"
+              style={{
+                width: 36,
+                height: 36,
+                borderRadius: "50%",
+                border: `1px solid ${Color.foreground}`
+              }}
+            />
+          </div>
         </div>
       </Wrapper>
     );
