@@ -33,7 +33,6 @@ export default class RecommendedScreen extends React.Component<Props, State> {
   }
 
   onSakeItemClicked(sake: Sake) {
-    console.log(sake);
     this.setState({
       focusedItem: sake
     });

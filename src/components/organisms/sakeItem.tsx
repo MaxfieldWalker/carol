@@ -6,7 +6,7 @@ import { CornerRadius, Color } from "../theme";
 interface Props {
   name: string;
   displayName: string;
-  imageUrl: string;
+  image: string;
   price: number;
   isSelected: boolean;
   style?: React.CSSProperties;
@@ -43,15 +43,7 @@ function renderCheckmark() {
 }
 
 export const SakeItem: React.StatelessComponent<Props> = props => {
-  const {
-    name,
-    displayName,
-    imageUrl,
-    price,
-    style,
-    onClick,
-    isSelected
-  } = props;
+  const { name, displayName, image, price, style, onClick, isSelected } = props;
 
   const imageW = 160;
   const imageH = imageW;

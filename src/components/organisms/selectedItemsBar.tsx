@@ -18,12 +18,6 @@ const Wrapper = styled.div`
 `;
 
 export default class SelectedItemsBar extends React.Component<Props> {
-  componentDidUpdate(prevProps: Readonly<Props>) {
-    if (prevProps.items.length !== this.props.items.length) {
-      console.log(this.props.items);
-    }
-  }
-
   render() {
     const { items, style, onNextButtonClicked } = this.props;
 
@@ -31,8 +25,6 @@ export default class SelectedItemsBar extends React.Component<Props> {
     const array = Array.from({ length: 5 }, (_, k) => k).slice(
       selectedItemsCount
     );
-
-    console.log(selectedItemsCount);
 
     const circleSize = 32;
 

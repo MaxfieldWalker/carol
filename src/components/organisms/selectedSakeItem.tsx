@@ -11,7 +11,7 @@ interface Props {
 
   item?: {
     name: string;
-    color: string;
+    color?: string;
   };
 
   style?: React.CSSProperties;
@@ -20,7 +20,7 @@ interface Props {
 export const SelectedSakeItem: React.StatelessComponent<Props> = props => {
   const { size, number, style } = props;
 
-  const color = props.item ? props.item.color : Color.lightgray;
+  const color = props.item ? props.item.color || "#ff0000" : Color.lightgray;
 
   return (
     <div style={style}>

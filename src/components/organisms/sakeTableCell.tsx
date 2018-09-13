@@ -3,13 +3,13 @@ import ImagePlaceholder from "../atoms/imagePlaceholder";
 
 interface Props {
   number: number;
-  imageUrl: string;
+  image: string;
   name: string;
   price: number;
 }
 
 export const SakeTableCell: React.StatelessComponent<Props> = props => {
-  const { number, imageUrl, name, price } = props;
+  const { number, image, name, price } = props;
 
   return (
     <tr>

@@ -7,7 +7,7 @@ import { Color } from "../theme";
 
 interface Props {
   name: string;
-  imageUrl: string;
+  image: string;
   description: string;
   price: number;
   isSelected: boolean;
@@ -17,7 +17,7 @@ interface Props {
 export const SakeDetailModal: React.StatelessComponent<Props> = props => {
   const {
     name,
-    imageUrl,
+    image,
     description,
     price,
     isSelected,
