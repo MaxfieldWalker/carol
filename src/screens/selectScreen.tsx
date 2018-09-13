@@ -14,6 +14,7 @@ import { AppHeader } from "../components/organisms/appHeader";
 import { RouterProps } from "react-router";
 import { RootContainer } from "../components/atoms/rootContainer";
 import { dummyKeywordList, alcoholStrengthList } from "../data/keywords";
+import { buffy } from "../util/array";
 
 type Props = RouterProps;
 
@@ -24,7 +25,8 @@ interface State {
 
 const ItemsWrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 16px;
 `;
 
 const AlcoholStrengthButtonWrapper = styled.div`
@@ -84,19 +86,20 @@ export default class SelectScreen extends React.Component<Props, State> {
           <div style={sectionStyle}>
             <UIHeader style={{}}>えらぶ</UIHeader>
             <UISubheader>キーワード</UISubheader>
-            <ItemsWrapper>
-              {keywordList.map((d: ScrollImageItemProps, index: number) => (
-                <ScrollImageItem
-                  key={index}
-                  style={{
-                    marginRight: 8,
-                    marginBottom: 10
-                  }}
-                  onClick={() => this.onKeywordClick(d.id)}
-                  {...d}
-                />
-              ))}
-            </ItemsWrapper>
+            {buffy(keywordList, 3).map(
+              (row: ScrollImageItemProps[], index1: number) => (
+                <ItemsWrapper>
+                  {row.map((d: ScrollImageItemProps, index2: number) => (
+                    <ScrollImageItem
+                      key={index1 * 3 + index2}
+                      onClick={() => this.onKeywordClick(d.id)}
+                      {...d}
+                    />
+                  ))}
+                </ItemsWrapper>
+              )
+            )}
+            <ItemsWrapper />
           </div>
           <div style={sectionStyle}>
             <UISubheader>アルコールの強さ</UISubheader>
