@@ -79,6 +79,8 @@ export default class SelectScreen extends React.Component<Props, State> {
       margin: "32px 0"
     };
 
+    const anyItemSelected = this.getSelectedItems().length > 0;
+
     return (
       <div>
         <AppHeader />
@@ -102,20 +104,26 @@ export default class SelectScreen extends React.Component<Props, State> {
             <ItemsWrapper />
           </div>
           <div style={sectionStyle}>
-            <UISubheader>アルコールの強さ</UISubheader>
-            <AlcoholStrengthButtonWrapper>
-              {strengthList.map((d: CheckButtonProps, index: number) => (
-                <CheckButton
-                  key={index}
-                  onClick={() => this.onAlcoholStrengthClick(d.id)}
-                  {...d}
-                />
-              ))}
-            </AlcoholStrengthButtonWrapper>
+            <div
+              style={{
+                marginBottom: anyItemSelected ? 220 : 0
+              }}
+            >
+              <UISubheader>アルコールの強さ</UISubheader>
+              <AlcoholStrengthButtonWrapper>
+                {strengthList.map((d: CheckButtonProps, index: number) => (
+                  <CheckButton
+                    key={index}
+                    onClick={() => this.onAlcoholStrengthClick(d.id)}
+                    {...d}
+                  />
+                ))}
+              </AlcoholStrengthButtonWrapper>
+            </div>
           </div>
         </RootContainer>
 
-        {this.getSelectedItems().length > 0 ? (
+        {anyItemSelected ? (
           <div
             style={{
               position: "fixed",

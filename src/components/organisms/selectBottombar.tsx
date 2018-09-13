@@ -79,13 +79,16 @@ export default class SelectBottomBar extends React.Component<Props> {
               borderBottomRightRadius: CornerRadius.mid,
               display: "flex",
               justifyContent: "flex-end",
-              padding: "4px 20px"
+              padding: `9px ${CornerRadius.mid + 4}px`
             }}
           >
             <UIButton
               primary
               onClick={onNextButtonClicked}
               disabled={selectedItems.length == 0}
+              style={{
+                margin: 0
+              }}
             >
               次へ
             </UIButton>
