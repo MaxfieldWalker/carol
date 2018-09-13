@@ -157,7 +157,13 @@ export default class RecommendedScreen extends React.Component<Props, State> {
             {userName ? userName + "さんへのおすすめ" : "あなたへのおすすめ"}
           </UIHeader>
 
-          {isLoaded ? this.renderItems() : <LoadingCircle />}
+          <div
+            style={{
+              marginBottom: anyItemSelected ? 220 : 0
+            }}
+          >
+            {isLoaded ? this.renderItems() : <LoadingCircle />}
+          </div>
         </RootContainer>
 
         <Rodal
