@@ -1,4 +1,5 @@
-import { Sake } from "../api/types";
+import { Sake, OmakaseSet } from "../api/types";
+import OmakaseScreen from "../screens/omakase";
 
 const data: Sake[] = [
   {
@@ -24,3 +25,13 @@ const data: Sake[] = [
 export const dummySakeData = [...data, ...data, data[0]].map(
   (x: Sake, index: number) => ({ ...x, id: index + 1 })
 );
+
+const omakase = {
+  name: "わいわいセット",
+  description: "みんなでわいわいわーい",
+  price: 1280,
+  items: [...data],
+  thumbnail: ""
+};
+
+export const dummyOmakaseSetData: OmakaseSet[] = [omakase, omakase];

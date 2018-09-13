@@ -5,12 +5,18 @@ interface Props {
   style?: React.CSSProperties;
 }
 
+const commonStyle: React.CSSProperties = {
+  marginLeft: 6,
+  color: Color.foreground
+};
+
 export const UIHeader: React.StatelessComponent<Props> = props => (
   <h1
     style={{
+      ...commonStyle,
       fontSize: 48,
-      color: Color.black,
-      fontWeight: 700
+      fontWeight: 700,
+      ...props.style
     }}
   >
     {props.children}
@@ -20,10 +26,12 @@ export const UIHeader: React.StatelessComponent<Props> = props => (
 export const UISubheader: React.StatelessComponent<Props> = props => (
   <h2
     style={{
-      fontSize: 32,
+      ...commonStyle,
       color: Color.black,
+      fontSize: 32,
       marginTop: 18,
-      marginBottom: 12
+      marginBottom: 12,
+      ...props.style
     }}
   >
     {props.children}
@@ -73,7 +81,7 @@ export const BodyText: React.StatelessComponent<Props> = props => (
 export const CaptionText: React.StatelessComponent<Props> = props => (
   <div
     style={{
-      fontSize: 14,
+      fontSize: 16,
       color: Color.black,
       lineHeight: "1.0em",
       ...props.style

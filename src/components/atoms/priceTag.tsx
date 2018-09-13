@@ -7,13 +7,14 @@ interface Props {
 }
 
 const Price = styled.span`
-  font-size: 36px;
+  font-size: 24px;
   color: ${Color.orange};
 `;
 
 const Yen = styled.span`
   font-size: 20px;
   color: ${Color.black};
+  margin-left: 2px;
 `;
 
 export const PriceTag: React.StatelessComponent<Props> = props => {

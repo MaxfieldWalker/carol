@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   background-color: ${Color.background};
   justify-content: center;
   align-items: center;
-  box-shadow: 0 10px 10px 10px #00000030;
+  box-shadow: 0 2px 10px 4px #00000020;
 `;
 
 const LeftContentWrapper = styled.div`

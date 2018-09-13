@@ -3,52 +3,47 @@ import ImagePlaceholder from "../atoms/imagePlaceholder";
 import { UISubheader, CaptionText } from "../atoms/typography";
 import { PriceTag } from "../atoms/priceTag";
 import { Sake } from "../../api/types";
+import { CornerRadius } from "../theme";
+import styled from "styled-components";
 
 export interface Props {
   name: string;
   description: string;
   price: number;
   items: Sake[];
+  style?: React.CSSProperties;
+  onClick?: () => void;
 }
 
+const NamePriceRow = styled.div`
+  display: flex;
+  align-items: flex-end;
+  padding-top: 9px;
+  padding-bottom: 6px;
+`;
+
 export const OmakaseItem: React.StatelessComponent<Props> = props => {
-  const { name, description, price, items } = props;
+  const { name, description, price, items, style, onClick } = props;
   return (
-    <div>
+    <div style={style} onClick={onClick}>
       <ImagePlaceholder
-        style={{
-          height: "300px" // NOTE: aspect-ratioとかを使った方がいい気がする
-        }}
+        style={
+          { height: "220px", borderRadius: CornerRadius.large } // NOTE: aspect-ratioとかを使った方がいい気がする
+        }
       />
-      <div
-        style={{
-          display: "flex"
-        }}
-      >
-        <div
-          style={{
-            flex: 1,
-            alignItems: "center"
-          }}
-        >
-          <UISubheader>{name}</UISubheader>
-        </div>
-        <div
-          style={{
-            width: "auto",
-            alignItems: "center"
-          }}
-        >
-          <PriceTag price={price} />
-        </div>
+      <div style={{ padding: "0 6px" }}>
+        <NamePriceRow>
+          <UISubheader
+            style={{ flex: 1, alignItems: "center", margin: 0, padding: 0 }}
+          >
+            {name}
+          </UISubheader>
+          <div style={{ width: "auto", alignItems: "center" }}>
+            <PriceTag price={price} />
+          </div>
+        </NamePriceRow>
+        <CaptionText>{description}</CaptionText>
       </div>
-      <CaptionText>{description}</CaptionText>
-      {items.map((value: Sake, index: number) => (
-        <div key={index}>
-          <p>{value.name}</p>
-        </div>
-      ))}
-      {props.children}
     </div>
   );
 };

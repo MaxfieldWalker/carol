@@ -6,6 +6,8 @@ import { LoadingCircle } from "../components/atoms/loadingCircle";
 import AppFooter from "../components/organisms/appFooter";
 import { OmakaseSet } from "../api/types";
 import { ApiClient } from "../api/apiClient";
+import styled from "styled-components";
+import { dummySakeData, dummyOmakaseSetData } from "../data/sake";
 
 interface Props {}
 
@@ -13,6 +15,10 @@ interface State {
   items: OmakaseSet[];
   loaded: boolean;
 }
+
+const RootContainer = styled.div`
+  padding: 0 12px;
+`;
 
 export default class OmakaseScreen extends React.Component<Props, State> {
   constructor(props: Props, state: State) {
@@ -25,10 +31,11 @@ export default class OmakaseScreen extends React.Component<Props, State> {
 
   async componentDidMount() {
     const client = new ApiClient();
-    const data = await client.getOmakaseSets("2998787");
+    // const data = await client.getOmakaseSets("2998787");
 
     this.setState({
-      items: data.sets,
+      // items: data.sets,
+      items: dummyOmakaseSetData,
       loaded: true
     });
   }
@@ -39,15 +46,28 @@ export default class OmakaseScreen extends React.Component<Props, State> {
     return (
       <div>
         <AppHeader />
-        <UIHeader>おまかせ</UIHeader>
-        {loaded ? (
-          items.map((item: OmakaseSet, index: number) => (
-            <OmakaseItem key={index} {...item} />
-          ))
-        ) : (
-          <LoadingCircle />
-        )}
-        <AppFooter />
+        <RootContainer>
+          <UIHeader style={{ marginTop: 20, marginBottom: 6 }}>
+            おまかせ
+          </UIHeader>
+          <div />
+          {loaded ? (
+            <div>
+              {items.map((item: OmakaseSet, index: number) => (
+                <OmakaseItem
+                  key={index}
+                  {...item}
+                  style={{
+                    marginBottom: 24
+                  }}
+                  onClick={() => alert("TODO: モーダルを出すようにする")}
+                />
+              ))}
+            </div>
+          ) : (
+            <LoadingCircle />
+          )}
+        </RootContainer>
       </div>
     );
   }
