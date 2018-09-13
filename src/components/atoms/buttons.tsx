@@ -52,3 +52,44 @@ export class UIButton extends React.Component<Props> {
     );
   }
 }
+
+interface SmallButtonProps {
+  color: string;
+  name: string;
+  onClick?: () => void;
+  style?: React.CSSProperties;
+}
+
+export const SmallButton: React.StatelessComponent<
+  SmallButtonProps
+> = props => {
+  const { color, name, onClick, style } = props;
+
+  const buttonStyle: React.CSSProperties = {
+    width: "auto",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: CornerRadius.mid,
+    cursor: "pointer",
+    userSelect: "none",
+    textAlign: "center",
+    padding: "8px 12px",
+    borderColor: color,
+    borderWidth: BorderWidth.mid,
+    borderStyle: "solid",
+    color: color
+  };
+
+  return (
+    <div
+      style={{
+        ...buttonStyle,
+        ...style
+      }}
+      onClick={onClick}
+    >
+      {name}
+    </div>
+  );
+};

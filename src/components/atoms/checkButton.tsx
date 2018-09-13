@@ -33,7 +33,10 @@ export default class CheckButton extends React.Component<Props> {
       alignItems: "center",
       justifyContent: "center",
       borderRadius: CornerRadius.mid,
-      cursor: "pointer"
+      cursor: "pointer",
+      userSelect: "none",
+      textAlign: "center",
+      padding: "8px 12px"
     };
 
     const mergedStyle = {
@@ -45,15 +48,7 @@ export default class CheckButton extends React.Component<Props> {
     const content = isChecked && checkedName ? checkedName : name;
 
     return (
-      <div
-        onClick={onClick}
-        style={{
-          ...mergedStyle,
-          userSelect: "none",
-          textAlign: "center",
-          padding: "8px 12px"
-        }}
-      >
+      <div onClick={onClick} style={mergedStyle}>
         <div>
           {/*必要*/}
           {content.split("\n").map((x: string, index: number) => (

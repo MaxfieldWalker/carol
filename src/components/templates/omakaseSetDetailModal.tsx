@@ -2,8 +2,9 @@ import * as React from "react";
 import { ImageModalWrapper } from "../molecules/imageModalWrapper";
 import { NameAndButtonRow } from "../molecules/nameAndButtonRow";
 import { UILargeItemName, CaptionText } from "../atoms/typography";
-import { UIButton } from "../atoms/buttons";
+import { UIButton, SmallButton } from "../atoms/buttons";
 import { DescriptionRow } from "../molecules/descriptionRow";
+import { Color } from "../theme";
 
 interface Props {
   thumbnail: string;
@@ -27,7 +28,11 @@ export const OmakaseSetDetailModal: React.StatelessComponent<Props> = props => {
           <span>{price}円</span>
         </div>
         <div>
-          <UIButton onClick={orderButtonClicked}>注文へ</UIButton>
+          <SmallButton
+            color={Color.blue}
+            name="注文へ"
+            onClick={orderButtonClicked}
+          />
         </div>
       </NameAndButtonRow>
       <DescriptionRow>
