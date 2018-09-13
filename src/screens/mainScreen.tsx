@@ -25,7 +25,8 @@ export class MainScreen extends React.Component<Props & RouterProps> {
 
   render() {
     const buttonStyle: React.CSSProperties = {
-      flex: 1
+      flex: 1,
+      margin: "0 9px"
     };
 
     return (
@@ -35,16 +36,16 @@ export class MainScreen extends React.Component<Props & RouterProps> {
         <ButtonsWrapper>
           <UIButton
             style={buttonStyle}
+            onClick={this.onOmakaseButtonPressed.bind(this)}
+          >
+            おまかせ
+          </UIButton>
+          <UIButton
+            style={buttonStyle}
             primary
             onClick={this.onSelectButtonPressed.bind(this)}
           >
             えらぶ
-          </UIButton>
-          <UIButton
-            style={buttonStyle}
-            onClick={this.onOmakaseButtonPressed.bind(this)}
-          >
-            おまかせ
           </UIButton>
         </ButtonsWrapper>
         <AppFooter />
