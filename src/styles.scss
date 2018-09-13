@@ -6,9 +6,18 @@
   src: url("/fonts/corp_round_v1.ttf") format("truetype");
 }
 
-.rodal-dialog {
-  padding: 0 !important;
-  border-radius: 16px;
+.rodal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .rodal-dialog {
+    padding: 0 !important;
+    border-radius: 16px;
+    top: inherit;
+    bottom: inherit;
+    position: relative;
+  }
 }
 
 *,

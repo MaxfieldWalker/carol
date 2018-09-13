@@ -12,10 +12,11 @@ export const ModalContainer: React.StatelessComponent<Props> = props => {
     <Rodal
       visible={visible}
       onClose={onClose}
-      width={90}
-      height={80}
-      measure="%"
       closeOnEsc={true}
+      customStyles={{
+        width: "90%",
+        height: "auto"
+      }}
       customMaskStyles={{ background: "rgba(0, 0, 0, .6)" }}
       style={{ padding: 0 }}
     >
