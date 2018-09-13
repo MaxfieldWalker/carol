@@ -39,6 +39,10 @@ module.exports = {
       {
         from: "./src/images",
         to: "images"
+      },
+      {
+        from: "./src/fonts",
+        to: "fonts"
       }
     ]),
     new ExtractTextPlugin({

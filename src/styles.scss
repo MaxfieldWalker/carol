@@ -1,6 +1,11 @@
 @import "~normalize.css/normalize.css";
 @import "~rodal/lib/rodal.css";
 
+@font-face {
+  font-family: "Corporate-Logo-Rounded";
+  src: url("/fonts/corp_round_v1.ttf") format("truetype");
+}
+
 .rodal-dialog {
   padding: 0 !important;
   border-radius: 16px;
