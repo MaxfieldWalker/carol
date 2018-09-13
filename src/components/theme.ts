@@ -1,9 +1,12 @@
 export enum Color {
   red = "#ff0000",
   orange = "#ffa500",
+  lightorange = "#c98b6a",
   yellow = "#ffff00",
   green = "#228B22",
-  blue = "#0000ff",
+  yellogreen = "#93c96a",
+  blue = "#0859db",
+  lightblue = "#6a96c9",
   indigo = "#4b0082",
   purple = "#800080",
   black = "#000000",

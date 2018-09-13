@@ -12,7 +12,7 @@ export const Loader: React.StatelessComponent<Props> = props => {
     <div
       className="loader loader-2"
       style={{
-        borderColor: color || Color.blue,
+        borderColor: color || Color.lightblue,
         borderTopColor: Color.transparent,
         width: size || 50,
         height: size || 50

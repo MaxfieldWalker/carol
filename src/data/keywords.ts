@@ -11,19 +11,19 @@ export const alcoholStrengthList = [
   {
     id: "low",
     name: "よわめ",
-    color: Color.blue,
+    color: Color.lightblue,
     isChecked: false
   },
   {
     id: "mid",
     name: "ふつう",
-    color: Color.green,
+    color: Color.yellogreen,
     isChecked: false
   },
   {
     id: "high",
     name: "つよめ",
-    color: Color.orange,
+    color: Color.lightorange,
     isChecked: false
   }
 ];
