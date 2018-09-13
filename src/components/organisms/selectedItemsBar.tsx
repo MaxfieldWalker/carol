@@ -73,17 +73,20 @@ export default class SelectedItemsBar extends React.Component<Props> {
           </BottomBarUpperContentWrapper>
 
           <BottomBarLowerContentWrapper>
-            <div style={{ width: "auto" }}>
-              <UIButton
-                primary
-                disabled={selectedItemsCount == 0}
-                onClick={() => {
-                  if (onNextButtonClicked) onNextButtonClicked();
-                }}
-              >
-                次へ
-              </UIButton>
-            </div>
+            <UIButton
+              primary
+              disabled={selectedItemsCount == 0}
+              onClick={() => {
+                if (onNextButtonClicked) onNextButtonClicked();
+              }}
+              style={{
+                width: "100%",
+                borderTopLeftRadius: 0,
+                borderTopRightRadius: 0
+              }}
+            >
+              次へ
+            </UIButton>
           </BottomBarLowerContentWrapper>
         </BottomBarContainer>
       </BottomBarWrapper>

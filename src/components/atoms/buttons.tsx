@@ -17,7 +17,7 @@ export class UIButton extends React.Component<Props> {
       borderRadius: CornerRadius.mid,
       border: `${BorderWidth.mid}px solid ${Color.foreground}`,
       fontSize: "24px",
-      padding: "9px 12px",
+      padding: "9px 20px",
       backgroundColor: "transparent",
       color: Color.foreground
     };

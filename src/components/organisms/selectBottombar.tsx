@@ -39,38 +39,27 @@ export default class SelectBottomBar extends React.Component<Props> {
     return (
       <BottomBarWrapper>
         <BottomBarContainer>
-          <BottomBarUpperContentWrapper>
-            {buffy(selectedItems, 2).map((row: string[], index1: number) => (
-              <TagWrapper key={index1}>
-                {row.map((name: string, index2: number) => (
-                  <div
-                    style={{
-                      width: "40%",
-                      borderRadius: 4,
-                      padding: 6,
-                      paddingLeft: 9,
-                      backgroundColor: Color.lightgray
-                    }}
-                    key={index1 * 2 + index2}
-                  >
-                    {name}
-                  </div>
-                ))}
-              </TagWrapper>
-            ))}
-          </BottomBarUpperContentWrapper>
-          <BottomBarLowerContentWrapper>
+          <div
+            style={{
+              backgroundColor: Color.foreground,
+              borderRadius: CornerRadius.mid,
+              display: "flex",
+              justifyContent: "flex-end"
+              // padding: `12px ${CornerRadius.mid + 4}px`
+            }}
+          >
             <UIButton
               primary
               onClick={onNextButtonClicked}
               disabled={selectedItems.length == 0}
               style={{
-                margin: 0
+                margin: 0,
+                width: "100%"
               }}
             >
               次へ
             </UIButton>
-          </BottomBarLowerContentWrapper>
+          </div>
         </BottomBarContainer>
       </BottomBarWrapper>
     );

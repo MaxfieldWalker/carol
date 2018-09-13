@@ -40,8 +40,8 @@ export const BottomBarLowerContentWrapper: React.StatelessComponent = props => {
         borderBottomLeftRadius: CornerRadius.mid,
         borderBottomRightRadius: CornerRadius.mid,
         display: "flex",
-        justifyContent: "flex-end",
-        padding: `9px ${CornerRadius.mid + 4}px`
+        justifyContent: "flex-end"
+        // padding: `9px ${CornerRadius.mid + 4}px`
       }}
     >
       {props.children}

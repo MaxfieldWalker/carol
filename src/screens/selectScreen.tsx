@@ -121,7 +121,7 @@ export default class SelectScreen extends React.Component<Props, State> {
       <div style={sectionStyle}>
         <div
           style={{
-            marginBottom: this.anyItemSelected ? 170 : 0
+            marginBottom: this.anyItemSelected ? 120 : 0
           }}
         >
           <UISubheader>アルコールの強さ</UISubheader>
