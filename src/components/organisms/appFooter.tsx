@@ -7,12 +7,35 @@ const Wrapper = styled.footer`
   height: 5em;
   position: absolute;
   width: 100vw;
-  height: 80px;
-  background-color: ${Color.yellow};
+  height: auto;
+  background-color: ${Color.underline};
+  color: ${Color.foreground};
 `;
 
 export default class AppFooter extends React.Component {
   render() {
-    return <Wrapper>ここにフッターが入るよ</Wrapper>;
+    return (
+      <Wrapper>
+        <div>
+          <ul>
+            <li>おさけフレンズについて</li>
+            <li>ヘルプ&amp;ガイド</li>
+          </ul>
+        </div>
+        <div
+          style={{
+            width: "100%",
+            backgroundColor: Color.lightgray,
+            color: Color.white
+          }}
+        >
+          <p>
+            おさけは二十歳になってから。
+            <br />
+            未成年の飲酒は法律で禁止されています。
+          </p>
+        </div>
+      </Wrapper>
+    );
   }
 }
