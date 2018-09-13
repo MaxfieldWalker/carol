@@ -10,6 +10,8 @@
 *:before,
 *:after {
   box-sizing: border-box;
+  font-family: "Corporate-Logo-Rounded", -apple-system, BlinkMacSystemFont,
+    "Helvetica Neue", "Segoe UI", sans-serif;
 }
 
 .title {
@@ -25,8 +27,6 @@ h4,
 h5,
 h6,
 p {
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI",
-    sans-serif;
   margin: 0;
   padding: 0;
   user-select: none;
