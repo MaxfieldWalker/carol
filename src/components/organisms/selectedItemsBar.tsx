@@ -4,18 +4,14 @@ import styled from "styled-components";
 import { Color } from "../theme";
 import { SelectedSakeItem } from "./selectedSakeItem";
 import { UIButton } from "../atoms/buttons";
+import { BottomBarContainer } from "../atoms/bottomBarContainer";
+import { BottomBarWrapper } from "../atoms/bottomBarWrapper";
 
 interface Props {
   items: Sake[];
   style?: React.CSSProperties;
   onNextButtonClicked?: () => void;
 }
-
-const Wrapper = styled.div`
-  width: 100%;
-  height: 100px;
-  padding: 8px;
-`;
 
 export default class SelectedItemsBar extends React.Component<Props> {
   render() {
@@ -34,17 +30,8 @@ export default class SelectedItemsBar extends React.Component<Props> {
     };
 
     return (
-      <Wrapper style={style}>
-        <div
-          style={{
-            width: "100%",
-            height: "100%",
-            backgroundColor: Color.white,
-            borderRadius: 16,
-            boxShadow: "0 10px 10px 10px #eee",
-            display: "flex"
-          }}
-        >
+      <BottomBarWrapper>
+        <BottomBarContainer>
           <div
             style={{
               display: "flex",
@@ -85,8 +72,8 @@ export default class SelectedItemsBar extends React.Component<Props> {
               次へ >
             </UIButton>
           </div>
-        </div>
-      </Wrapper>
+        </BottomBarContainer>
+      </BottomBarWrapper>
     );
   }
 }

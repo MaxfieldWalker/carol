@@ -115,11 +115,22 @@ export default class SelectScreen extends React.Component<Props, State> {
           </div>
         </RootContainer>
 
-        <SelectBottomBar
-          selectedItems={this.getSelectedItems()}
-          onNextButtonClicked={this.onNextButtonClicked.bind(this)}
-          isNextButtonEnabled={false}
-        />
+        {this.getSelectedItems().length > 0 ? (
+          <div
+            style={{
+              position: "fixed",
+              width: "100vw",
+              height: "auto",
+              bottom: 16
+            }}
+          >
+            <SelectBottomBar
+              selectedItems={this.getSelectedItems()}
+              onNextButtonClicked={this.onNextButtonClicked.bind(this)}
+              isNextButtonEnabled={false}
+            />
+          </div>
+        ) : null}
       </div>
     );
   }

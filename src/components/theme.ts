@@ -17,7 +17,7 @@ export enum Color {
 }
 
 export enum CornerRadius {
-  small = 4,
+  small = 8,
   mid = 16,
   large = 20
 }
