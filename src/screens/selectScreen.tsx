@@ -151,7 +151,6 @@ export default class SelectScreen extends React.Component<Props, State> {
           onNextButtonClicked={this.onNextButtonClicked.bind(this)}
           isNextButtonEnabled={false}
         />
-        <AppFooter />
       </div>
     );
   }

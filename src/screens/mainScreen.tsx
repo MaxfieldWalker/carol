@@ -9,7 +9,7 @@ import { withRouter, RouterProps } from "react-router";
 const ButtonsWrapper = styled.div`
   display: flex;
   width: "100%";
-  padding: 12px 0;
+  padding: 16px 0;
 `;
 
 interface Props {}

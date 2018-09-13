@@ -14,7 +14,7 @@ import {
 } from "./types";
 
 export class ApiClient {
-  private static ENDPOINT = "http://172.20.10.3:8000/api";
+  private static ENDPOINT = "http://172.20.10.4:8000/api";
   // private static ENDPOINT =
   //   "http://ec2-18-222-108-7.us-east-2.compute.amazonaws.com:8080/sakeapp/public/api";
   private _instance: AxiosInstance;
@@ -52,7 +52,8 @@ export class ApiClient {
    * @param postCode ハイフン無し郵便番号 (例: 5630002)
    */
   async getOmakaseSets(postCode: string): Promise<OmakaseSetsResponse> {
-    return this.createGetRequest<OmakaseSetsResponse>(`/omakase/${postCode}`);
+    const params = { postcode: postCode };
+    return this.createGetRequest<OmakaseSetsResponse>(`/omakase`, params);
   }
 
   /**
