@@ -16,25 +16,15 @@ export class HeroImage extends React.Component {
           src="/images/hero.png"
           height="400"
           width="100%"
-          style={{
-            position: "absolute",
-            opacity: 0.9,
-            objectFit: "cover"
-          }}
+          style={{ position: "absolute", opacity: 0.9, objectFit: "cover" }}
         />
-        <div
-          style={{
-            position: "absolute",
-            left: 16,
-            bottom: 16
-          }}
-        >
+        <div style={{ position: "absolute", left: 16, bottom: 16 }}>
           <h2
             style={{
               color: "#fff",
               fontSize: 42,
               fontWeight: "bold",
-              textShadow: "-2px 2px 3px rgba(0,0,0,0.3)"
+              textShadow: "rgba(0, 0, 0, 0.3) -4px 4px 8px"
             }}
           >
             おうちで飲める。 <br />
