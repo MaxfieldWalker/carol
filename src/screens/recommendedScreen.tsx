@@ -12,6 +12,7 @@ import { buffy } from "../util/array";
 import styled from "styled-components";
 import { LoadingCircle } from "../components/atoms/loadingCircle";
 import { ApiClient } from "../api/apiClient";
+import { BottomBarLocator } from "../components/atoms/bottomBarLocator";
 const Rodal = require("rodal").default;
 
 interface P {
@@ -164,12 +165,8 @@ export default class RecommendedScreen extends React.Component<Props, State> {
           height={80}
           measure="%"
           closeOnEsc={true}
-          customMaskStyles={{
-            background: "rgba(0, 0, 0, .6)"
-          }}
-          style={{
-            padding: 0
-          }}
+          customMaskStyles={{ background: "rgba(0, 0, 0, .6)" }}
+          style={{ padding: 0 }}
         >
           <SakeDetailModal
             {...sake}
@@ -177,15 +174,13 @@ export default class RecommendedScreen extends React.Component<Props, State> {
             onSelectButtonClicked={() => this.onSelectButtonClicked(sake)}
           />
         </Rodal>
-        <SelectedItemsBar
-          style={{
-            position: "fixed",
-            bottom: 0,
-            display: "block"
-          }}
-          items={selectedItems}
-          onNextButtonClicked={this.onNextButtonClick.bind(this)}
-        />
+        <BottomBarLocator>
+          <SelectedItemsBar
+            style={{ position: "fixed", bottom: 0, display: "block" }}
+            items={selectedItems}
+            onNextButtonClicked={this.onNextButtonClick.bind(this)}
+          />
+        </BottomBarLocator>
       </div>
     );
   }

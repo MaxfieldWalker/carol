@@ -15,6 +15,7 @@ import { RouterProps } from "react-router";
 import { RootContainer } from "../components/atoms/rootContainer";
 import { dummyKeywordList, alcoholStrengthList } from "../data/keywords";
 import { buffy } from "../util/array";
+import { BottomBarLocator } from "../components/atoms/bottomBarLocator";
 
 type Props = RouterProps;
 
@@ -124,20 +125,13 @@ export default class SelectScreen extends React.Component<Props, State> {
         </RootContainer>
 
         {anyItemSelected ? (
-          <div
-            style={{
-              position: "fixed",
-              width: "100vw",
-              height: "auto",
-              bottom: 16
-            }}
-          >
+          <BottomBarLocator>
             <SelectBottomBar
               selectedItems={this.getSelectedItems()}
               onNextButtonClicked={this.onNextButtonClicked.bind(this)}
               isNextButtonEnabled={false}
             />
-          </div>
+          </BottomBarLocator>
         ) : null}
       </div>
     );
