@@ -7,7 +7,7 @@ import { Checkmark } from "./checkmark";
 export interface ScrollImageItemProps {
   imageUrl: string;
   id: string;
-  displayName: string;
+  name: string;
   isChecked: boolean;
   style?: React.CSSProperties;
   onClick?: () => void;
@@ -16,7 +16,7 @@ export interface ScrollImageItemProps {
 export const ScrollImageItem: React.StatelessComponent<
   ScrollImageItemProps
 > = props => {
-  const { imageUrl, displayName, isChecked, onClick } = props;
+  const { imageUrl, name, isChecked, onClick } = props;
 
   const itemSize = 90;
 
@@ -50,7 +50,7 @@ export const ScrollImageItem: React.StatelessComponent<
           marginTop: 6
         }}
       >
-        {displayName}
+        {name}
       </UIItemName>
     </div>
   );

@@ -65,7 +65,7 @@ export default class SelectScreen extends React.Component<Props, State> {
   getSelectedItems() {
     const { keywordList, strengthList } = this.state;
     const list = [...keywordList, ...strengthList];
-    return list.filter(x => x.isChecked).map(x => x.id);
+    return list.filter(x => x.isChecked).map(x => x.name);
   }
 
   onNextButtonClicked() {

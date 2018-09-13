@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Color, CornerRadius } from "../theme";
 import { BottomBarContainer } from "../atoms/bottomBarContainer";
 import { BottomBarWrapper } from "../atoms/bottomBarWrapper";
+import { buffy } from "../../util/array";
 
 interface Props {
   selectedItems: string[];
@@ -14,6 +15,12 @@ interface Props {
 
 const Wrapper = styled.div`
   display: flex;
+`;
+
+const TagWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
 `;
 
 export default class SelectBottomBar extends React.Component<Props> {
@@ -33,20 +40,35 @@ export default class SelectBottomBar extends React.Component<Props> {
               height: 100,
               backgroundColor: Color.white,
               position: "relative",
+              overflow: "scroll",
               borderTopLeftRadius: CornerRadius.mid,
               borderTopRightRadius: CornerRadius.mid,
               // borderRadius: CornerRadius.mid,
               // borderBottomLeftRadius: CornerRadius.mid,
               // borderBottomRightRadius: CornerRadius.mid,
               // marginBottom: -CornerRadius.mid,
-              zIndex: 1
+              zIndex: 1,
+              padding: `${CornerRadius.mid + -4}px ${CornerRadius.mid + 4}px`
             }}
           >
-            <div style={{ flex: 1 }}>
-              {selectedItems.map((name: string, index: number) => (
-                <div key={index}>{name}</div>
-              ))}
-            </div>
+            {buffy(selectedItems, 2).map((row: string[], index1: number) => (
+              <TagWrapper>
+                {row.map((name: string, index2: number) => (
+                  <div
+                    style={{
+                      width: "40%",
+                      borderRadius: 4,
+                      padding: 6,
+                      paddingLeft: 9,
+                      backgroundColor: Color.lightgray
+                    }}
+                    key={index1 * 2 + index2}
+                  >
+                    {name}
+                  </div>
+                ))}
+              </TagWrapper>
+            ))}
           </div>
           <div
             style={{
@@ -56,7 +78,8 @@ export default class SelectBottomBar extends React.Component<Props> {
               borderBottomLeftRadius: CornerRadius.mid,
               borderBottomRightRadius: CornerRadius.mid,
               display: "flex",
-              justifyContent: "flex-end"
+              justifyContent: "flex-end",
+              padding: "4px 20px"
             }}
           >
             <UIButton
