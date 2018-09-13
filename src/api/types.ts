@@ -70,7 +70,7 @@ export interface Sake {
   /**
    * 画像
    */
-  image: string;
+  image_url: string;
 
   /**
    * 説明文

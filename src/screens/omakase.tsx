@@ -41,7 +41,6 @@ export default class OmakaseScreen extends React.Component<Props, State> {
 
     this.setState({
       items: data.sets,
-      // items: dummyOmakaseSetData,
       loaded: true
     });
   }
@@ -82,14 +81,14 @@ export default class OmakaseScreen extends React.Component<Props, State> {
           <div />
           {loaded ? (
             <div>
-              {items.map((item: OmakaseSet, index: number) => (
+              {items.map((omakase: OmakaseSet, index: number) => (
                 <OmakaseItem
                   key={index}
-                  {...item}
+                  {...omakase}
                   style={{
                     marginBottom: 24
                   }}
-                  onClick={this.onOmakaseItemClicked.bind(this)}
+                  onClick={() => this.onOmakaseItemClicked(omakase)}
                 />
               ))}
             </div>

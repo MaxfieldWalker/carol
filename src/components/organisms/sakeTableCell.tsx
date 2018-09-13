@@ -5,13 +5,13 @@ import { CornerRadius, Color } from "../theme";
 
 interface Props {
   number: number;
-  image: string;
+  image_url: string;
   name: string;
   price: number;
 }
 
 export const SakeTableRow: React.StatelessComponent<Props> = props => {
-  const { number, image, name, price } = props;
+  const { number, image_url, name, price } = props;
   const commonstyle: React.CSSProperties = {
     padding: "6px 0"
   };
@@ -28,7 +28,7 @@ export const SakeTableRow: React.StatelessComponent<Props> = props => {
       <td style={commonstyle}>{number}</td>
       <td style={commonstyle}>
         <SafeImage
-          source={image}
+          source={image_url}
           style={{ borderRadius: CornerRadius.small, width: 50, height: 50 }}
         />
       </td>

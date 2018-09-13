@@ -45,7 +45,19 @@ export class ApiClient {
       strength: strength ? strength.join(",") : ""
     };
 
-    return this.createGetRequest<GetItemsResponse>("/items", params);
+    const result = await this.createGetRequest<GetItemsResponse>(
+      "/items",
+      params
+    );
+
+    const actual: GetItemsResponse = {
+      items: result.items.map(x => ({
+        ...x,
+        image_url: this.resolveImageUrl(x.image_url)
+      }))
+    };
+
+    return actual;
   }
 
   /**

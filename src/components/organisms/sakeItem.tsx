@@ -3,11 +3,12 @@ import ImagePlaceholder from "../atoms/imagePlaceholder";
 import { UIItemName, CaptionText } from "../atoms/typography";
 import { CornerRadius, Color } from "../theme";
 import { Checkmark } from "../atoms/checkmark";
+import { SafeImage } from "../atoms/safeImage";
 
 interface Props {
   name: string;
   displayName: string;
-  image: string;
+  image_url: string;
   price: number;
   isSelected: boolean;
   style?: React.CSSProperties;
@@ -15,7 +16,15 @@ interface Props {
 }
 
 export const SakeItem: React.StatelessComponent<Props> = props => {
-  const { name, displayName, image, price, style, onClick, isSelected } = props;
+  const {
+    name,
+    displayName,
+    image_url,
+    price,
+    style,
+    onClick,
+    isSelected
+  } = props;
 
   const imageW = 160;
   const imageH = imageW;
@@ -23,11 +32,15 @@ export const SakeItem: React.StatelessComponent<Props> = props => {
   return (
     <div onClick={onClick} style={{ width: imageW, ...style }}>
       <div style={{ position: "relative" }}>
-        <ImagePlaceholder
-          style={{ borderRadius: CornerRadius.mid }}
-          width={imageW}
-          height={imageH}
+        <SafeImage
+          source={image_url}
+          style={{
+            width: imageW,
+            height: imageH,
+            borderRadius: CornerRadius.mid
+          }}
         />
+
         {isSelected ? <Checkmark content="追加済み✓" /> : null}
       </div>
 

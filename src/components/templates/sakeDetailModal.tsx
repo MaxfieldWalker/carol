@@ -12,7 +12,7 @@ import { DescriptionRow } from "../molecules/descriptionRow";
 
 interface Props {
   name: string;
-  image: string;
+  image_url: string;
   description: string;
   price: number;
   isSelected: boolean;
@@ -22,7 +22,7 @@ interface Props {
 export const SakeDetailModal: React.StatelessComponent<Props> = props => {
   const {
     name,
-    image,
+    image_url,
     description,
     price,
     isSelected,
@@ -32,7 +32,7 @@ export const SakeDetailModal: React.StatelessComponent<Props> = props => {
   console.log(props);
 
   return (
-    <ImageModalWrapper image={image}>
+    <ImageModalWrapper image={image_url}>
       <NameAndButtonRow>
         <div style={{ flex: 1 }}>
           <UILargeItemName>{name}</UILargeItemName>
