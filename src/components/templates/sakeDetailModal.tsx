@@ -24,7 +24,8 @@ const NameAndButtonRow = styled.div`
 `;
 
 const DescriptionRow = styled.div`
-  padding: 9px 9px;
+  padding: 0 9px;
+  padding-bottom: 12px;
 `;
 
 const ContentWrapper = styled.div`
@@ -58,13 +59,14 @@ export const SakeDetailModal: React.StatelessComponent<Props> = props => {
         <NameAndButtonRow>
           <div style={{ flex: 1 }}>
             <UILargeItemName>{name}</UILargeItemName>
+            <span>{price}円</span>
           </div>
           <div style={{ width: "auto" }}>
             <CheckButton
               isChecked={isSelected}
               color={Color.blue}
               checkedColor={Color.orange}
-              name={`追加する\n${price}円`}
+              name="追加する"
               checkedName="追加済み"
               onClick={onSelectButtonClicked}
             />

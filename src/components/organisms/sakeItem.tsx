@@ -28,7 +28,7 @@ export const SakeItem: React.StatelessComponent<Props> = props => {
           width={imageW}
           height={imageH}
         />
-        {isSelected ? <Checkmark content="選択済み✓" /> : null}
+        {isSelected ? <Checkmark content="追加済み✓" /> : null}
       </div>
 
       <div style={{ marginLeft: 4, marginTop: 6 }}>

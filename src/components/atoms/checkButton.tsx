@@ -13,7 +13,7 @@ interface Props {
 
 export default class CheckButton extends React.Component<Props> {
   render() {
-    const { color, isChecked, name, onClick, style } = this.props;
+    const { color, isChecked, name, checkedName, onClick, style } = this.props;
 
     const uncheckedStyle: React.CSSProperties = {
       borderColor: color,
@@ -42,6 +42,8 @@ export default class CheckButton extends React.Component<Props> {
       ...style
     };
 
+    const content = isChecked && checkedName ? checkedName : name;
+
     return (
       <div
         onClick={onClick}
@@ -54,7 +56,7 @@ export default class CheckButton extends React.Component<Props> {
       >
         <div>
           {/*必要*/}
-          {name.split("\n").map((x: string, index: number) => (
+          {content.split("\n").map((x: string, index: number) => (
             <p key={index}>{x}</p>
           ))}
         </div>
