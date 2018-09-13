@@ -43,7 +43,7 @@ export default class OrderConfirmationScreen extends React.Component<
         items: dummySakeData,
         isLoaded: true
       });
-    }, 200);
+    }, 2000);
   }
 
   onOrderButtonClicked() {

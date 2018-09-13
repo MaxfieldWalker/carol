@@ -13,7 +13,8 @@ export enum Color {
   foreground = "#523115",
   background = "#FFFDF0",
   underline = "#FBF080",
-  accent = "#6ac9a8"
+  accent = "#6ac9a8",
+  transparent = "rgba(0, 0, 0, 0)"
 }
 
 export enum CornerRadius {

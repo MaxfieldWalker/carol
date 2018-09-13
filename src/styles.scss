@@ -42,3 +42,48 @@ body {
   // margin-bottom: 80px; // フッターの高さ
   background-color: #fffdf0;
 }
+
+// ローディングサークルのスタイル
+
+$a: -2px;
+
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #0cf;
+  border-radius: 50%;
+
+  animation: spin 1.5s infinite linear;
+}
+.loader::before,
+.loader::after {
+  left: $a;
+  top: $a;
+  display: none;
+  position: absolute;
+  content: "";
+  width: inherit;
+  height: inherit;
+  border: inherit;
+  border-radius: inherit;
+}
+
+.loader-2 {
+  border-top-color: transparent;
+}
+.loader-2::after {
+  display: block;
+  left: $a;
+  top: $a;
+  border: inherit;
+  transform: rotate(30deg);
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
