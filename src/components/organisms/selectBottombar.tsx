@@ -5,6 +5,10 @@ import { Color, CornerRadius } from "../theme";
 import { BottomBarContainer } from "../atoms/bottomBarContainer";
 import { BottomBarWrapper } from "../atoms/bottomBarWrapper";
 import { buffy } from "../../util/array";
+import {
+  BottomBarUpperContentWrapper,
+  BottomBarLowerContentWrapper
+} from "../atoms/bottomBarContentWrapper";
 
 interface Props {
   selectedItems: string[];
@@ -35,22 +39,7 @@ export default class SelectBottomBar extends React.Component<Props> {
     return (
       <BottomBarWrapper>
         <BottomBarContainer>
-          <div
-            style={{
-              height: 100,
-              backgroundColor: Color.white,
-              position: "relative",
-              overflow: "scroll",
-              borderTopLeftRadius: CornerRadius.mid,
-              borderTopRightRadius: CornerRadius.mid,
-              // borderRadius: CornerRadius.mid,
-              // borderBottomLeftRadius: CornerRadius.mid,
-              // borderBottomRightRadius: CornerRadius.mid,
-              // marginBottom: -CornerRadius.mid,
-              zIndex: 1,
-              padding: `${CornerRadius.mid + -4}px ${CornerRadius.mid + 4}px`
-            }}
-          >
+          <BottomBarUpperContentWrapper>
             {buffy(selectedItems, 2).map((row: string[], index1: number) => (
               <TagWrapper key={index1}>
                 {row.map((name: string, index2: number) => (
@@ -69,19 +58,8 @@ export default class SelectBottomBar extends React.Component<Props> {
                 ))}
               </TagWrapper>
             ))}
-          </div>
-          <div
-            style={{
-              backgroundColor: Color.foreground,
-              position: "relative",
-              // paddingTop: CornerRadius.mid,
-              borderBottomLeftRadius: CornerRadius.mid,
-              borderBottomRightRadius: CornerRadius.mid,
-              display: "flex",
-              justifyContent: "flex-end",
-              padding: `9px ${CornerRadius.mid + 4}px`
-            }}
-          >
+          </BottomBarUpperContentWrapper>
+          <BottomBarLowerContentWrapper>
             <UIButton
               primary
               onClick={onNextButtonClicked}
@@ -92,7 +70,7 @@ export default class SelectBottomBar extends React.Component<Props> {
             >
               次へ
             </UIButton>
-          </div>
+          </BottomBarLowerContentWrapper>
         </BottomBarContainer>
       </BottomBarWrapper>
     );

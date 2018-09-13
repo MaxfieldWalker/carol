@@ -6,6 +6,10 @@ import { SelectedSakeItem } from "./selectedSakeItem";
 import { UIButton } from "../atoms/buttons";
 import { BottomBarContainer } from "../atoms/bottomBarContainer";
 import { BottomBarWrapper } from "../atoms/bottomBarWrapper";
+import {
+  BottomBarUpperContentWrapper,
+  BottomBarLowerContentWrapper
+} from "../atoms/bottomBarContentWrapper";
 
 interface Props {
   items: Sake[];
@@ -36,47 +40,49 @@ export default class SelectedItemsBar extends React.Component<Props> {
     return (
       <BottomBarWrapper>
         <BottomBarContainer>
-          <div
-            style={{
-              overflowX: "auto",
-              whiteSpace: "nowrap",
-              padding: "12px 0"
-            }}
-          >
-            {items.map((x: Sake, index: number) => (
-              <SelectedSakeItem
-                key={index}
-                style={commonItemStyle}
-                number={index + 1}
-                size={circleSize}
-                item={x}
-              />
-            ))}
-
-            {// 残りを埋める
-            array.map(index => (
-              <SelectedSakeItem
-                style={commonItemStyle}
-                key={index}
-                number={index + 1}
-                size={circleSize}
-              />
-            ))}
-          </div>
-          <div
-            style={{
-              width: "auto"
-            }}
-          >
-            <UIButton
-              disabled={selectedItemsCount == 0}
-              onClick={() => {
-                if (onNextButtonClicked) onNextButtonClicked();
+          <BottomBarUpperContentWrapper>
+            <div
+              style={{
+                overflowX: "auto",
+                whiteSpace: "nowrap",
+                padding: "12px 0"
               }}
             >
-              次へ >
-            </UIButton>
-          </div>
+              {items.map((x: Sake, index: number) => (
+                <SelectedSakeItem
+                  key={index}
+                  style={commonItemStyle}
+                  number={index + 1}
+                  size={circleSize}
+                  item={x}
+                />
+              ))}
+
+              {// 残りを埋める
+              array.map(index => (
+                <SelectedSakeItem
+                  style={commonItemStyle}
+                  key={index}
+                  number={index + 1}
+                  size={circleSize}
+                />
+              ))}
+            </div>
+          </BottomBarUpperContentWrapper>
+
+          <BottomBarLowerContentWrapper>
+            <div style={{ width: "auto" }}>
+              <UIButton
+                primary
+                disabled={selectedItemsCount == 0}
+                onClick={() => {
+                  if (onNextButtonClicked) onNextButtonClicked();
+                }}
+              >
+                次へ
+              </UIButton>
+            </div>
+          </BottomBarLowerContentWrapper>
         </BottomBarContainer>
       </BottomBarWrapper>
     );
