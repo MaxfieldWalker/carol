@@ -26,7 +26,11 @@ export default class SelectedItemsBar extends React.Component<Props> {
 
     const commonItemStyle: React.CSSProperties = {
       margin: "4px",
-      flex: 1
+      flex: 1,
+      minWidth: 60,
+      display: "inline-block",
+      height: 40,
+      verticalAlign: "top"
     };
 
     return (
@@ -34,8 +38,9 @@ export default class SelectedItemsBar extends React.Component<Props> {
         <BottomBarContainer>
           <div
             style={{
-              display: "flex",
-              flex: 1
+              overflowX: "auto",
+              whiteSpace: "nowrap",
+              padding: "12px 0"
             }}
           >
             {items.map((x: Sake, index: number) => (

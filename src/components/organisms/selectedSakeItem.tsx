@@ -26,18 +26,27 @@ export const SelectedSakeItem: React.StatelessComponent<Props> = props => {
     <div style={style}>
       <div
         style={{
-          backgroundColor: color,
-          width: size,
-          height: size,
           display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          borderRadius: 9999
+          alignItems: "center"
         }}
       >
-        {number}
+        <div
+          style={{
+            backgroundColor: color,
+            width: size,
+            height: size,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: 9999
+          }}
+        >
+          {number}
+        </div>
+        {props.item ? (
+          <CaptionText style={{ marginLeft: 6 }}>{props.item.name}</CaptionText>
+        ) : null}
       </div>
-      {props.item ? <CaptionText>{props.item.name}</CaptionText> : null}
     </div>
   );
 };
