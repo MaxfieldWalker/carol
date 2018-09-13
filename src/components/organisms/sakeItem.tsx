@@ -2,6 +2,7 @@ import * as React from "react";
 import ImagePlaceholder from "../atoms/imagePlaceholder";
 import { UIItemName, CaptionText } from "../atoms/typography";
 import { CornerRadius, Color } from "../theme";
+import { Checkmark } from "../atoms/checkmark";
 
 interface Props {
   name: string;
@@ -11,35 +12,6 @@ interface Props {
   isSelected: boolean;
   style?: React.CSSProperties;
   onClick?: () => void;
-}
-
-function renderCheckmark() {
-  return (
-    <div
-      style={{
-        position: "absolute",
-        bottom: 0,
-        left: 0,
-        height: 24,
-        padding: "2px 4px",
-        width: "100%",
-        backgroundColor: Color.green,
-        borderBottomLeftRadius: CornerRadius.mid,
-        borderBottomRightRadius: CornerRadius.mid,
-        display: "flex",
-        alignItems: "center"
-      }}
-    >
-      <CaptionText
-        style={{
-          color: Color.white,
-          textAlign: "center"
-        }}
-      >
-        選択済み✓
-      </CaptionText>
-    </div>
-  );
 }
 
 export const SakeItem: React.StatelessComponent<Props> = props => {
@@ -68,7 +40,7 @@ export const SakeItem: React.StatelessComponent<Props> = props => {
           width={imageW}
           height={imageH}
         />
-        {isSelected ? renderCheckmark() : null}
+        {isSelected ? <Checkmark content="選択済み✓" /> : null}
       </div>
 
       <div
