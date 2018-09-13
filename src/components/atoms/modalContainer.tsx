@@ -6,7 +6,7 @@ interface Props {
   onClose?: () => void;
 }
 
-export const ModalComponent: React.StatelessComponent<Props> = props => {
+export const ModalContainer: React.StatelessComponent<Props> = props => {
   const { visible, onClose } = props;
   return (
     <Rodal

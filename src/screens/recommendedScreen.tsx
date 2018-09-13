@@ -13,7 +13,7 @@ import styled from "styled-components";
 import { LoadingCircle } from "../components/atoms/loadingCircle";
 import { ApiClient } from "../api/apiClient";
 import { BottomBarLocator } from "../components/atoms/bottomBarLocator";
-import { ModalComponent } from "../components/atoms/modalContainer";
+import { ModalContainer } from "../components/atoms/modalContainer";
 const Rodal = require("rodal").default;
 
 interface P {
@@ -53,7 +53,7 @@ export default class RecommendedScreen extends React.Component<Props, State> {
     // const api = new ApiClient();
 
     // const result = await api.getItems(
-    //   "1234567",
+    //   "2998787",
     //   [PreferenceKeyword.オレンジ],
     //   [PreferenceStrength.low, PreferenceStrength.mid, PreferenceStrength.high]
     // );
@@ -166,7 +166,7 @@ export default class RecommendedScreen extends React.Component<Props, State> {
             {isLoaded ? this.renderItems() : <LoadingCircle />}
           </div>
         </RootContainer>
-        <ModalComponent
+        <ModalContainer
           visible={isModalVisible}
           onClose={this.closeModal.bind(this)}
         >
@@ -175,7 +175,7 @@ export default class RecommendedScreen extends React.Component<Props, State> {
             isSelected={isCurrentFocusedItemSelected}
             onSelectButtonClicked={() => this.onSelectButtonClicked(sake)}
           />
-        </ModalComponent>
+        </ModalContainer>
         {anyItemSelected ? (
           <BottomBarLocator>
             <SelectedItemsBar

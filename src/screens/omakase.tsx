@@ -9,12 +9,15 @@ import { ApiClient } from "../api/apiClient";
 import styled from "styled-components";
 import { dummySakeData, dummyOmakaseSetData } from "../data/sake";
 import { RootContainer } from "../components/atoms/rootContainer";
+import { ModalContainer } from "../components/atoms/modalContainer";
+import { SakeDetailModal } from "../components/templates/sakeDetailModal";
 
 interface Props {}
 
 interface State {
   items: OmakaseSet[];
   loaded: boolean;
+  isModalVisible: boolean;
 }
 
 export default class OmakaseScreen extends React.Component<Props, State> {
@@ -22,13 +25,14 @@ export default class OmakaseScreen extends React.Component<Props, State> {
     super(props, state);
     this.state = {
       items: [],
-      loaded: false
+      loaded: false,
+      isModalVisible: false
     };
   }
 
   async componentDidMount() {
     const client = new ApiClient();
-    const data = await client.getOmakaseSets("1234567");
+    const data = await client.getOmakaseSets("2998787");
 
     this.setState({
       items: data.sets,
@@ -37,8 +41,20 @@ export default class OmakaseScreen extends React.Component<Props, State> {
     });
   }
 
+  openModal() {
+    this.setState({
+      isModalVisible: true
+    });
+  }
+
+  closeModal() {
+    this.setState({
+      isModalVisible: false
+    });
+  }
+
   render() {
-    const { items, loaded } = this.state;
+    const { items, loaded, isModalVisible } = this.state;
 
     return (
       <div>
@@ -65,6 +81,11 @@ export default class OmakaseScreen extends React.Component<Props, State> {
             <LoadingCircle />
           )}
         </RootContainer>
+
+        <ModalContainer
+          visible={isModalVisible}
+          onClose={this.closeModal.bind(this)}
+        />
       </div>
     );
   }
