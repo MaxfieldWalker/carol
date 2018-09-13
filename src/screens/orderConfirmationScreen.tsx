@@ -2,7 +2,8 @@ import * as React from "react";
 import {
   UIHeader,
   UISubheader,
-  BodyText
+  BodyText,
+  CaptionText
 } from "../components/atoms/typography";
 import { Sake } from "../api/types";
 import { PriceTag } from "../components/atoms/priceTag";
@@ -10,18 +11,20 @@ import { LoadingCircle } from "../components/atoms/loadingCircle";
 import { dummySakeData } from "../data/sake";
 import { SakeTableRow } from "../components/organisms/sakeTableCell";
 import { UIButton } from "../components/atoms/buttons";
-import { RouterProps } from "react-router";
+import { RouterProps, RouteProps } from "react-router";
 import { AppHeader } from "../components/organisms/appHeader";
 import { RootContainer } from "../components/atoms/rootContainer";
 import { HeaderedText } from "../components/molecules/headeredText";
+import { NavigateToOrderConfirmationContext } from "../util/router";
 
 interface P {}
 
-type Props = P & RouterProps;
+type Props = P & RouterProps & RouteProps;
 
 interface State {
   items: Sake[];
   isLoaded: boolean;
+  autoItemsFilled: boolean;
 }
 
 export default class OrderConfirmationScreen extends React.Component<
@@ -31,9 +34,17 @@ export default class OrderConfirmationScreen extends React.Component<
   constructor(props: Props, state: State) {
     super(props, state);
 
+    const autoFilled = props.location!!.state
+      ? (props.location!!.state as NavigateToOrderConfirmationContext)
+          .autoFilled
+      : true;
+
+    console.log(props.location!!.state);
+
     this.state = {
       items: [],
-      isLoaded: false
+      isLoaded: false,
+      autoItemsFilled: autoFilled
     };
   }
 
@@ -50,8 +61,20 @@ export default class OrderConfirmationScreen extends React.Component<
     this.props.history.push("/order/requested");
   }
 
+  renderAutoFilledNotification() {
+    return (
+      <div
+        style={{
+          margin: "6px 0"
+        }}
+      >
+        <CaptionText>一部の商品は自動で追加されました。</CaptionText>
+      </div>
+    );
+  }
+
   renderContent() {
-    const { items } = this.state;
+    const { items, autoItemsFilled } = this.state;
 
     const totalPrice = items
       .map(x => x.price)
@@ -67,6 +90,7 @@ export default class OrderConfirmationScreen extends React.Component<
 
     return (
       <div>
+        {autoItemsFilled ? this.renderAutoFilledNotification() : null}
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <tbody>
             {items.map((sake: Sake, index: number) => (

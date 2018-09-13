@@ -14,6 +14,7 @@ import { LoadingCircle } from "../components/atoms/loadingCircle";
 import { ApiClient } from "../api/apiClient";
 import { BottomBarLocator } from "../components/atoms/bottomBarLocator";
 import { ModalContainer } from "../components/atoms/modalContainer";
+import { NavigateToOrderConfirmationContext } from "../util/router";
 const Rodal = require("rodal").default;
 
 interface P {
@@ -113,7 +114,14 @@ export default class RecommendedScreen extends React.Component<Props, State> {
   }
 
   onNextButtonClick() {
-    this.props.history.push("/order/confirm");
+    const state: NavigateToOrderConfirmationContext = {
+      autoFilled: this.state.selectedItems.length < 5
+    };
+
+    this.props.history.push({
+      pathname: "/order/confirm",
+      state
+    });
   }
 
   renderItems() {

@@ -3,3 +3,10 @@ export interface RouterProps {
     push: (path: string) => void;
   };
 }
+
+export interface NavigateToOrderConfirmationContext {
+  /**
+   * 自動で残りのアイテムが補充されたか
+   */
+  autoFilled: boolean;
+}
