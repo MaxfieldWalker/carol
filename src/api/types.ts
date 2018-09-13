@@ -136,6 +136,8 @@ export interface OrderSetResponse {
    * 予想到着時刻
    */
   arrival_time: number;
+
+  items: Sake[];
 }
 
 export interface GetItemsResponse {

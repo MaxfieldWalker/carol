@@ -55,6 +55,23 @@ export default class OrderRequestedScreen extends React.Component<P, State> {
     return (
       <div>
         <UIHeader>ご注文が完了しました</UIHeader>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <div>
+            <img
+              src="/images/delivery-truck.png"
+              style={{
+                width: 128,
+                height: 128
+              }}
+            />
+          </div>
+        </div>
         <div>
           <HeaderedText header="ご注文番号" body={orderNumber} />
           <HeaderedText
@@ -63,11 +80,7 @@ export default class OrderRequestedScreen extends React.Component<P, State> {
           />
           <HeaderedText header="提供" body={storeName} />
         </div>
-        <div
-          style={{
-            padding: "12px 0"
-          }}
-        >
+        <div style={{ padding: "12px 0" }}>
           <UIButton
             primary
             style={{ width: "100%" }}
