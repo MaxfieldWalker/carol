@@ -13,7 +13,7 @@ export const SafeImage: React.StatelessComponent<Props> = props => {
     <img
       src={source}
       style={{
-        objectFit: "fill",
+        objectFit: "cover",
         ...style
       }}
     />
