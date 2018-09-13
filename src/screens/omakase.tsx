@@ -83,6 +83,8 @@ export default class OmakaseScreen extends React.Component<P, State> {
   render() {
     const { items, loaded, isModalVisible, focusedItem } = this.state;
 
+    console.log(items);
+
     return (
       <div>
         <AppHeader />

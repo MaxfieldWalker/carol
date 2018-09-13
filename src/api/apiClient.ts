@@ -88,7 +88,20 @@ export class ApiClient {
    */
   async orderSet(set_id: number): Promise<OrderSetResponse> {
     const params = { set_id };
-    return this.createGetRequest<OrderSetResponse>("/set_order", params);
+    const result = await this.createGetRequest<OrderSetResponse>(
+      "/set_order",
+      params
+    );
+
+    const actual: OrderSetResponse = {
+      ...result,
+      items: result.items.map(x => ({
+        ...x,
+        thumbnail: this.resolveImageUrl(x.thumbnail)
+      }))
+    };
+
+    return actual;
   }
 
   /**

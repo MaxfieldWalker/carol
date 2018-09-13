@@ -64,13 +64,17 @@ export default class OrderConfirmationScreen extends React.Component<
         isLoaded: true
       });
     } else if (context.set_id) {
+      console.log(context.set_id);
+
       const result = await api.orderSet(context.set_id);
 
-      const { id, name, price, thumbnail, description } = result.omakase;
+      console.log(result);
+
+      const { id, name, price, thumbnail, description } = result.items[0];
       const s: Sake = {
-        id,
+        id: id,
         name,
-        price,
+        price: price,
         image_url: thumbnail,
         description
       };

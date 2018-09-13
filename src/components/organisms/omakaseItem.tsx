@@ -47,7 +47,6 @@ export const OmakaseItem: React.StatelessComponent<Props> = props => {
             <PriceTag price={price} />
           </div>
         </NamePriceRow>
-        <CaptionText>{description}</CaptionText>
       </div>
     </div>
   );
