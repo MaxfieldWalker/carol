@@ -85,7 +85,7 @@ export const CaptionText: React.StatelessComponent<Props> = props => (
     style={{
       fontSize: 16,
       color: Color.black,
-      lineHeight: "1.0em",
+      lineHeight: "1.3em",
       ...props.style
     }}
   >

@@ -13,6 +13,7 @@ export interface Props {
   items: Sake[];
   style?: React.CSSProperties;
   onClick?: () => void;
+  thumbnail: string;
 }
 
 const NamePriceRow = styled.div`
@@ -23,13 +24,17 @@ const NamePriceRow = styled.div`
 `;
 
 export const OmakaseItem: React.StatelessComponent<Props> = props => {
-  const { name, description, price, items, style, onClick } = props;
+  const { name, description, price, items, style, onClick, thumbnail } = props;
+
   return (
     <div style={style} onClick={onClick}>
-      <ImagePlaceholder
-        style={
-          { height: "220px", borderRadius: CornerRadius.large } // NOTE: aspect-ratioとかを使った方がいい気がする
-        }
+      <img
+        src={thumbnail}
+        style={{
+          height: 220,
+          borderRadius: CornerRadius.large,
+          width: "100%"
+        }}
       />
       <div style={{ padding: "0 6px" }}>
         <NamePriceRow>

@@ -90,7 +90,7 @@ export default class SelectScreen extends React.Component<Props, State> {
             <UISubheader>キーワード</UISubheader>
             {buffy(keywordList, 3).map(
               (row: ScrollImageItemProps[], index1: number) => (
-                <ItemsWrapper>
+                <ItemsWrapper key={index1}>
                   {row.map((d: ScrollImageItemProps, index2: number) => (
                     <ScrollImageItem
                       key={index1 * 3 + index2}

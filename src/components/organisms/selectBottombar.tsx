@@ -52,7 +52,7 @@ export default class SelectBottomBar extends React.Component<Props> {
             }}
           >
             {buffy(selectedItems, 2).map((row: string[], index1: number) => (
-              <TagWrapper>
+              <TagWrapper key={index1}>
                 {row.map((name: string, index2: number) => (
                   <div
                     style={{

@@ -15,6 +15,7 @@ import {
 
 export class ApiClient {
   private static ENDPOINT = "http://172.20.10.5:8000/api";
+  private static STATIC_CONTENT_ENDPOINT = "http://172.20.10.5:8000";
   // private static ENDPOINT =
   //   "http://ec2-18-222-108-7.us-east-2.compute.amazonaws.com:8080/sakeapp/public/api";
   private _instance: AxiosInstance;
@@ -53,7 +54,19 @@ export class ApiClient {
    */
   async getOmakaseSets(postCode: string): Promise<OmakaseSetsResponse> {
     const params = { postcode: postCode };
-    return this.createGetRequest<OmakaseSetsResponse>(`/omakase`, params);
+    const result = await this.createGetRequest<OmakaseSetsResponse>(
+      `/omakase`,
+      params
+    );
+
+    const actual = {
+      sets: result.sets.map(x => ({
+        ...x,
+        thumbnail: this.resolveImageUrl(x.thumbnail)
+      }))
+    };
+
+    return actual;
   }
 
   /**
@@ -82,12 +95,7 @@ export class ApiClient {
    * @param email 注文者のメールアドレス
    */
   async agreePurchase(address: string, name: string, email: string) {
-    const data = {
-      purchase_id: 9999, // FIXME: 適当でいい?
-      address,
-      name,
-      email
-    };
+    const data = { purchase_id: 9999, address, name, email }; // FIXME: 適当でいい?
 
     return this.createPostRequest("/purchase", data);
   }
@@ -102,12 +110,12 @@ export class ApiClient {
     const { number, security_code, name, expiration } = creditCardInfo;
 
     const params = {
-      purchase_id: 9999, // FIXME: てきとうでいい？
+      purchase_id: 9999,
       number,
       security_code,
       name,
       expiration
-    };
+    }; // FIXME: てきとうでいい？
 
     return await this.createPostRequest<PayApiResponse>("/pay/credit", params);
   }
@@ -132,5 +140,9 @@ export class ApiClient {
 
   private resolveUrl(relativePath: string): string {
     return path.resolve(ApiClient.ENDPOINT, relativePath);
+  }
+
+  private resolveImageUrl(relativePath: string): string {
+    return ApiClient.STATIC_CONTENT_ENDPOINT + "/" + relativePath;
   }
 }

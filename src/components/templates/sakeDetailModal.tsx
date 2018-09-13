@@ -4,6 +4,7 @@ import { UISubheader, UILargeItemName } from "../atoms/typography";
 import { UIButton } from "../atoms/buttons";
 import CheckButton from "../atoms/checkButton";
 import { Color } from "../theme";
+import styled from "styled-components";
 
 interface Props {
   name: string;
@@ -13,6 +14,8 @@ interface Props {
   isSelected: boolean;
   onSelectButtonClicked: () => void;
 }
+
+// const NameAndButtonRow = styled.
 
 export const SakeDetailModal: React.StatelessComponent<Props> = props => {
   const {
