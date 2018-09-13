@@ -7,6 +7,7 @@ import { SakeDetailModal } from "../components/templates/sakeDetailModal";
 import SelectedItemsBar from "../components/organisms/selectedItemsBar";
 import { dummySakeData } from "../data/sake";
 import { RouterProps } from "react-router";
+import { RootContainer } from "../components/atoms/rootContainer";
 const Rodal = require("rodal").default;
 
 interface P {
@@ -89,7 +90,7 @@ export default class RecommendedScreen extends React.Component<Props, State> {
     return (
       <div>
         <AppHeader />
-        <div>
+        <RootContainer>
           <UIHeader>
             {userName ? userName + "さんへのおすすめ" : "あなたへのおすすめ"}
           </UIHeader>
@@ -113,7 +114,7 @@ export default class RecommendedScreen extends React.Component<Props, State> {
               />
             ))}
           </div>
-        </div>
+        </RootContainer>
 
         <Rodal
           visible={isModalVisible}

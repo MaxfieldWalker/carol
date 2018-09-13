@@ -6,6 +6,8 @@ interface Props {
 }
 
 const commonStyle: React.CSSProperties = {
+  marginTop: 18,
+  marginBottom: 12,
   marginLeft: 6,
   color: Color.foreground
 };
