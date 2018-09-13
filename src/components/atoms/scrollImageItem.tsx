@@ -17,11 +17,10 @@ export const ScrollImageItem: React.StatelessComponent<
 > = props => {
   const { imageUrl, displayName, isChecked, onClick } = props;
 
-  const itemSize = 100;
+  const itemSize = 90;
 
   const style: React.CSSProperties = {
     cursor: "pointer",
-    padding: "12px 8px",
     backgroundColor: isChecked ? Color.orange : "transparent",
     borderRadius: CornerRadius.mid,
     width: "auto",

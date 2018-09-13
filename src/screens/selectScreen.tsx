@@ -7,20 +7,13 @@ import {
   CheckButton,
   CheckButtonProps
 } from "../components/atoms/scrollTextItem";
-
-import { UISubheader } from "../components/atoms/typography";
-import { Color } from "../components/theme";
-import { SelectEffectDescriptor } from "redux-saga/effects";
+import { UISubheader, UIHeader } from "../components/atoms/typography";
 import styled from "styled-components";
 import SelectBottomBar from "../components/organisms/selectBottombar";
 import { AppHeader } from "../components/organisms/appHeader";
-import AppFooter from "../components/organisms/appFooter";
 import { RouterProps } from "react-router";
-
-interface SelectableItem {
-  name: string;
-  type: "keyword" | "strength";
-}
+import { RootContainer } from "../components/atoms/rootContainer";
+import { dummyKeywordList, alcoholStrengthList } from "../data/keywords";
 
 type Props = RouterProps;
 
@@ -34,43 +27,18 @@ const ItemsWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
+const AlcoholStrengthButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 export default class SelectScreen extends React.Component<Props, State> {
   constructor(props: Props, state: State) {
     super(props, state);
 
     this.state = {
-      strengthList: [
-        {
-          id: "unknown",
-          name: "わからない",
-          color: Color.gray,
-          isChecked: false
-        },
-        {
-          id: "low",
-          name: "よわめ",
-          color: Color.blue,
-          isChecked: false
-        },
-        {
-          id: "mid",
-          name: "ふつう",
-          color: Color.green,
-          isChecked: false
-        },
-        {
-          id: "high",
-          name: "つよめ",
-          color: Color.orange,
-          isChecked: false
-        }
-      ],
-      keywordList: [1, 2, 3, 4, 5, 6, 7, 8, 9].map(x => ({
-        imageUrl: "",
-        id: "kankitsu" + x,
-        displayName: "柑橘系",
-        isChecked: false
-      }))
+      strengthList: alcoholStrengthList,
+      keywordList: dummyKeywordList
     };
   }
 
@@ -112,39 +80,37 @@ export default class SelectScreen extends React.Component<Props, State> {
     return (
       <div>
         <AppHeader />
-        <div style={sectionStyle}>
-          <UISubheader>キーワード</UISubheader>
-          <ItemsWrapper>
-            {keywordList.map((d: ScrollImageItemProps, index: number) => (
-              <ScrollImageItem
-                key={index}
-                style={{
-                  marginRight: 8,
-                  marginBottom: 12
-                }}
-                onClick={() => this.onKeywordClick(d.id)}
-                {...d}
-              />
-            ))}
-          </ItemsWrapper>
-        </div>
-        <div>
+        <RootContainer>
           <div style={sectionStyle}>
-            <UISubheader>アルコールの強さ</UISubheader>
+            <UIHeader style={{}}>えらぶ</UIHeader>
+            <UISubheader>キーワード</UISubheader>
             <ItemsWrapper>
-              {strengthList.map((d: CheckButtonProps, index: number) => (
-                <CheckButton
+              {keywordList.map((d: ScrollImageItemProps, index: number) => (
+                <ScrollImageItem
                   key={index}
                   style={{
-                    marginRight: 16
+                    marginRight: 8,
+                    marginBottom: 10
                   }}
-                  onClick={() => this.onAlcoholStrengthClick(d.id)}
+                  onClick={() => this.onKeywordClick(d.id)}
                   {...d}
                 />
               ))}
             </ItemsWrapper>
           </div>
-        </div>
+          <div style={sectionStyle}>
+            <UISubheader>アルコールの強さ</UISubheader>
+            <AlcoholStrengthButtonWrapper>
+              {strengthList.map((d: CheckButtonProps, index: number) => (
+                <CheckButton
+                  key={index}
+                  onClick={() => this.onAlcoholStrengthClick(d.id)}
+                  {...d}
+                />
+              ))}
+            </AlcoholStrengthButtonWrapper>
+          </div>
+        </RootContainer>
 
         <SelectBottomBar
           selectedItems={this.getSelectedItems()}

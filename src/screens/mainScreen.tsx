@@ -38,7 +38,7 @@ export class MainScreen extends React.Component<Props & RouterProps> {
             primary
             onClick={this.onSelectButtonPressed.bind(this)}
           >
-            選ぶ
+            えらぶ
           </UIButton>
           <UIButton
             style={buttonStyle}

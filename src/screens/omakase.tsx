@@ -8,6 +8,7 @@ import { OmakaseSet } from "../api/types";
 import { ApiClient } from "../api/apiClient";
 import styled from "styled-components";
 import { dummySakeData, dummyOmakaseSetData } from "../data/sake";
+import { RootContainer } from "../components/atoms/rootContainer";
 
 interface Props {}
 
@@ -15,10 +16,6 @@ interface State {
   items: OmakaseSet[];
   loaded: boolean;
 }
-
-const RootContainer = styled.div`
-  padding: 0 12px;
-`;
 
 export default class OmakaseScreen extends React.Component<Props, State> {
   constructor(props: Props, state: State) {
