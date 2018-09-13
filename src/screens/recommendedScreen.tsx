@@ -13,6 +13,7 @@ import styled from "styled-components";
 import { LoadingCircle } from "../components/atoms/loadingCircle";
 import { ApiClient } from "../api/apiClient";
 import { BottomBarLocator } from "../components/atoms/bottomBarLocator";
+import { ModalComponent } from "../components/atoms/modalContainer";
 const Rodal = require("rodal").default;
 
 interface P {
@@ -52,7 +53,7 @@ export default class RecommendedScreen extends React.Component<Props, State> {
     // const api = new ApiClient();
 
     // const result = await api.getItems(
-    //   "2998787",
+    //   "1234567",
     //   [PreferenceKeyword.オレンジ],
     //   [PreferenceStrength.low, PreferenceStrength.mid, PreferenceStrength.high]
     // );
@@ -165,23 +166,16 @@ export default class RecommendedScreen extends React.Component<Props, State> {
             {isLoaded ? this.renderItems() : <LoadingCircle />}
           </div>
         </RootContainer>
-
-        <Rodal
+        <ModalComponent
           visible={isModalVisible}
           onClose={this.closeModal.bind(this)}
-          width={90}
-          height={80}
-          measure="%"
-          closeOnEsc={true}
-          customMaskStyles={{ background: "rgba(0, 0, 0, .6)" }}
-          style={{ padding: 0 }}
         >
           <SakeDetailModal
             {...sake}
             isSelected={isCurrentFocusedItemSelected}
             onSelectButtonClicked={() => this.onSelectButtonClicked(sake)}
           />
-        </Rodal>
+        </ModalComponent>
         {anyItemSelected ? (
           <BottomBarLocator>
             <SelectedItemsBar
