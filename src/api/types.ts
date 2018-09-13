@@ -2,7 +2,7 @@ export interface PayApiResponse {
   /**
    * 注文番号
    */
-  order_number: number;
+  purchase_id: number;
 }
 
 export interface CreditCardInfo {
@@ -19,7 +19,7 @@ export interface CreditCardInfo {
   /**
    * セキュリティコード
    */
-  securityCode: number;
+  security_code: number;
 
   /**
    * 有効期限 (日付を文字列でフォーマットする)
@@ -70,7 +70,7 @@ export interface Sake {
   /**
    * 画像
    */
-  imageUrl: string;
+  image: string;
 
   /**
    * 説明文
@@ -80,7 +80,7 @@ export interface Sake {
   /**
    * 酒の色
    */
-  color: string;
+  color?: string;
 }
 
 /**
@@ -102,4 +102,41 @@ export enum PreferenceStrength {
   "high",
   // わからない
   "unknown"
+}
+
+export interface OmakaseSetsResponse {
+  sets: OmakaseSet[];
+}
+
+export type PurchaseResponse = OrderSetResponse;
+
+export interface OrderSetResponse {
+  /**
+   * 購入番号
+   */
+  purchase_id: number;
+
+  /**
+   * お届け店舗
+   */
+  source: string;
+
+  /**
+   * お届け店舗情報
+   */
+  source_info: string;
+
+  /**
+   * お届け店舗の住所
+   */
+  source_address: string;
+
+  /**
+   * 予想到着時刻
+   */
+  arrival_time: number;
+}
+
+export interface GetItemsResponse {
+  items: Sake[];
 }

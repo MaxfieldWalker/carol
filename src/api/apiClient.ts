@@ -6,7 +6,11 @@ import {
   PreferenceStrength,
   Sake,
   CreditCardInfo,
-  PayApiResponse
+  PayApiResponse,
+  OmakaseSetsResponse,
+  OrderSetResponse,
+  GetItemsResponse,
+  PurchaseResponse
 } from "./types";
 
 export class ApiClient {
@@ -22,35 +26,94 @@ export class ApiClient {
     });
   }
 
+  /**
+   * /api/items
+   * @param postcode ハイフンなし郵便番号 (例: 5630002)
+   * @param keyword キーワード
+   * @param strength 酒の強さ
+   */
   async getItems(
-    postCode: string,
-    keywords: PreferenceKeyword[],
-    strength?: PreferenceStrength
-  ): Promise<Sake[]> {
-    const params = { postCode, keywords, strength };
+    postcode: string,
+    keyword: PreferenceKeyword[],
+    strength: PreferenceStrength[]
+  ): Promise<GetItemsResponse> {
+    const params = {
+      postcode,
+      keyword: keyword.join(","),
+      strength: strength ? strength.join(",") : ""
+    };
 
-    return this.createGetRequest<Sake[]>("/items", params);
-  }
-
-  async getOmakaseSets(postCode: string): Promise<{ sets: OmakaseSet[] }> {
-    return this.createGetRequest<any>(`/omakase/${postCode}`);
+    return this.createGetRequest<GetItemsResponse>("/items", params);
   }
 
   /**
-   * 支払い
+   * おまかせセットのデータを取得する
+   * /api/omakase
+   * @param postCode ハイフン無し郵便番号 (例: 5630002)
    */
-  async pay(
-    price: number,
+  async getOmakaseSets(postCode: string): Promise<OmakaseSetsResponse> {
+    return this.createGetRequest<OmakaseSetsResponse>(`/omakase/${postCode}`);
+  }
+
+  /**
+   * セットを注文する
+   * /api/set_order
+   */
+  async orderSet(set_name: string): Promise<OrderSetResponse> {
+    const params = { set_name };
+    return this.createGetRequest<OrderSetResponse>("/set_order", params);
+  }
+
+  /**
+   * 注文を確定する前に、お届け目安時間などを取得するためのAPI
+   * GET '/api/purchase'
+   */
+  async purchase(item_id: number[]): Promise<PurchaseResponse> {
+    const params = { item_id: item_id.join(",") };
+    return this.createGetRequest<PurchaseResponse>("/purchase", params);
+  }
+
+  /**
+   * 購入確定時に、注文者の情報を送る
+   * POST /api/purchase
+   * @param address お届け先住所
+   * @param name お届け先の人の名前
+   * @param email 注文者のメールアドレス
+   */
+  async agreePurchase(address: string, name: string, email: string) {
+    const data = {
+      purchase_id: 9999, // FIXME: 適当でいい?
+      address,
+      name,
+      email
+    };
+
+    return this.createPostRequest("/purchase", data);
+  }
+
+  /**
+   * クレジットカードで支払う
+   * POST /api/pay/credit
+   */
+  async payByCreditCard(
     creditCardInfo: CreditCardInfo
   ): Promise<PayApiResponse> {
-    const data = { ...creditCardInfo, price };
+    const { number, security_code, name, expiration } = creditCardInfo;
 
-    return await this.createPostRequest<PayApiResponse>("/pay/credit", data);
+    const params = {
+      purchase_id: 9999, // FIXME: てきとうでいい？
+      number,
+      security_code,
+      name,
+      expiration
+    };
+
+    return await this.createPostRequest<PayApiResponse>("/pay/credit", params);
   }
 
   private async createGetRequest<T>(
     relativePath: string,
-    params?: any
+    params?: { [key: string]: string }
   ): Promise<T> {
     const r = await this._instance.get<T>(this.resolveUrl(relativePath), {
       params
