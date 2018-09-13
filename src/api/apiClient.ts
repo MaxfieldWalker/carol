@@ -14,7 +14,7 @@ import {
 } from "./types";
 
 export class ApiClient {
-  private static ENDPOINT = "http://172.20.10.4:8000/api";
+  private static ENDPOINT = "http://172.20.10.5:8000/api";
   // private static ENDPOINT =
   //   "http://ec2-18-222-108-7.us-east-2.compute.amazonaws.com:8080/sakeapp/public/api";
   private _instance: AxiosInstance;

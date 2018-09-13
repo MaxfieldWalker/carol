@@ -21,36 +21,19 @@ export const SakeItem: React.StatelessComponent<Props> = props => {
   const imageH = imageW;
 
   return (
-    <div
-      onClick={onClick}
-      style={{
-        width: imageW,
-        ...style
-      }}
-    >
-      <div
-        style={{
-          position: "relative"
-        }}
-      >
+    <div onClick={onClick} style={{ width: imageW, ...style }}>
+      <div style={{ position: "relative" }}>
         <ImagePlaceholder
-          style={{
-            borderRadius: CornerRadius.mid
-          }}
+          style={{ borderRadius: CornerRadius.mid }}
           width={imageW}
           height={imageH}
         />
         {isSelected ? <Checkmark content="選択済み✓" /> : null}
       </div>
 
-      <div
-        style={{
-          marginLeft: 4,
-          marginTop: 6
-        }}
-      >
+      <div style={{ marginLeft: 4, marginTop: 6 }}>
         <UIItemName>{displayName}</UIItemName>
-        {price}円
+        <span>{price}</span>円
       </div>
     </div>
   );

@@ -57,7 +57,7 @@ export const UILargeItemName: React.StatelessComponent<Props> = props => (
 export const UIItemName: React.StatelessComponent<Props> = props => (
   <p
     style={{
-      fontSize: 18,
+      fontSize: 20,
       color: Color.black,
       fontWeight: "bold",
       letterSpacing: "0.1em",

@@ -8,6 +8,8 @@ import SelectedItemsBar from "../components/organisms/selectedItemsBar";
 import { dummySakeData } from "../data/sake";
 import { RouterProps } from "react-router";
 import { RootContainer } from "../components/atoms/rootContainer";
+import { buffy } from "../util/array";
+import styled from "styled-components";
 const Rodal = require("rodal").default;
 
 interface P {
@@ -21,6 +23,12 @@ interface State {
   focusedItem?: Sake;
   selectedItems: Sake[];
 }
+
+const ItemsWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+`;
 
 export default class RecommendedScreen extends React.Component<Props, State> {
   constructor(props: Props, state: State) {
@@ -94,26 +102,21 @@ export default class RecommendedScreen extends React.Component<Props, State> {
           <UIHeader>
             {userName ? userName + "さんへのおすすめ" : "あなたへのおすすめ"}
           </UIHeader>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap"
-            }}
-          >
-            {dummySakeData.map((sake: Sake, index: number) => (
-              <SakeItem
-                key={index}
-                {...sake}
-                displayName={sake.name}
-                style={{
-                  marginRight: 8,
-                  marginBottom: 12
-                }}
-                isSelected={selectedItems.findIndex(x => x.id === sake.id) >= 0}
-                onClick={() => this.onSakeItemClicked(sake)}
-              />
-            ))}
-          </div>
+          {buffy(dummySakeData, 2).map((row: Sake[], index1: number) => (
+            <ItemsWrapper key={index1}>
+              {row.map((sake: Sake, index2: number) => (
+                <SakeItem
+                  key={index1 * 2 + index2}
+                  {...sake}
+                  displayName={sake.name}
+                  isSelected={
+                    selectedItems.findIndex(x => x.id === sake.id) >= 0
+                  }
+                  onClick={() => this.onSakeItemClicked(sake)}
+                />
+              ))}
+            </ItemsWrapper>
+          ))}
         </RootContainer>
 
         <Rodal

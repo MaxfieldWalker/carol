@@ -28,11 +28,11 @@ export default class OmakaseScreen extends React.Component<Props, State> {
 
   async componentDidMount() {
     const client = new ApiClient();
-    // const data = await client.getOmakaseSets("2998787");
+    const data = await client.getOmakaseSets("2998787");
 
     this.setState({
-      // items: data.sets,
-      items: dummyOmakaseSetData,
+      items: data.sets,
+      // items: dummyOmakaseSetData,
       loaded: true
     });
   }
