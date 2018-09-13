@@ -125,6 +125,10 @@ export default class RecommendedScreen extends React.Component<Props, State> {
           width={90}
           height={80}
           measure="%"
+          closeOnEsc={true}
+          customMaskStyles={{
+            background: "rgba(0, 0, 0, .6)"
+          }}
           style={{
             padding: 0
           }}
