@@ -15,9 +15,11 @@ export class HeroImage extends React.Component {
         <img
           src="/images/hero.png"
           height="400"
+          width="100%"
           style={{
             position: "absolute",
-            opacity: 0.9
+            opacity: 0.9,
+            objectFit: "cover"
           }}
         />
         <div
