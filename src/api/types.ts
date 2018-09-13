@@ -28,6 +28,8 @@ export interface CreditCardInfo {
 }
 
 export interface OmakaseSet {
+  id: number;
+  
   /**
    * セットの名前
    */
@@ -109,35 +111,40 @@ export interface OmakaseSetsResponse {
   sets: OmakaseSet[];
 }
 
-export type PurchaseResponse = OrderSetResponse;
+export interface OrderResponse {
 
-export interface OrderSetResponse {
   /**
    * 購入番号
    */
   purchase_id: number;
-
+  
   /**
    * お届け店舗
    */
   source: string;
-
+  
   /**
    * お届け店舗情報
    */
   source_info: string;
-
+  
   /**
    * お届け店舗の住所
    */
   source_address: string;
-
+  
   /**
    * 予想到着時刻
    */
   arrival_time: number;
+}
 
+export interface PurchaseResponse extends OrderResponse {
   items: Sake[];
+}
+
+export interface OrderSetResponse extends OrderResponse {
+  omakase: OmakaseSet;
 }
 
 export interface GetItemsResponse {

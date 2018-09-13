@@ -26,7 +26,8 @@ export const dummySakeData = [...data, ...data, data[0]].map(
   (x: Sake, index: number) => ({ ...x, id: index + 1 })
 );
 
-const omakase = {
+const omakase: OmakaseSet = {
+  id: 1,
   name: "わいわいセット",
   description: "みんなでわいわいわーい",
   price: 1280,
@@ -34,4 +35,4 @@ const omakase = {
   thumbnail: ""
 };
 
-export const dummyOmakaseSetData: OmakaseSet[] = [omakase, omakase];
+export const dummyOmakaseSetData: OmakaseSet[] = [omakase];

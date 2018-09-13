@@ -13,6 +13,8 @@ import { ModalContainer } from "../components/atoms/modalContainer";
 import { SakeDetailModal } from "../components/templates/sakeDetailModal";
 import { OmakaseSetDetailModal } from "../components/templates/omakaseSetDetailModal";
 import { RouterProps } from "react-router";
+import OrderConfirmationScreen from "./orderConfirmationScreen";
+import { NavigateToOrderConfirmationContext } from "../util/router";
 
 interface Props {}
 
@@ -69,7 +71,13 @@ export default class OmakaseScreen extends React.Component<P, State> {
 
   onOrderButtonClicked() {
     const omakase = this.state.focusedItem!!;
-    this.props.history.push("/order/confirm");
+
+    const context: NavigateToOrderConfirmationContext = {
+      autoFilled: false,
+      set_id: omakase.id
+    };
+
+    this.props.history.push("/order/confirm", context);
   }
 
   render() {

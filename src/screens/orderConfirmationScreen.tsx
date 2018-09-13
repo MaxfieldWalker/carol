@@ -56,12 +56,30 @@ export default class OrderConfirmationScreen extends React.Component<
 
     const context = this.props.location
       .state as NavigateToOrderConfirmationContext;
-    const result = await api.purchase(context.item_id);
+    if (context.item_id) {
+      const result = await api.purchase(context.item_id);
 
-    this.setState({
-      items: result.items,
-      isLoaded: true
-    });
+      this.setState({
+        items: result.items,
+        isLoaded: true
+      });
+    } else if (context.set_id) {
+      const result = await api.orderSet(context.set_id);
+
+      const { id, name, price, thumbnail, description } = result.omakase;
+      const s: Sake = {
+        id,
+        name,
+        price,
+        image_url: thumbnail,
+        description
+      };
+
+      this.setState({
+        items: [s],
+        isLoaded: true
+      });
+    }
   }
 
   onOrderButtonClicked() {

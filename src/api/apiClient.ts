@@ -86,8 +86,8 @@ export class ApiClient {
    * セットを注文する
    * /api/set_order
    */
-  async orderSet(set_name: string): Promise<OrderSetResponse> {
-    const params = { set_name };
+  async orderSet(set_id: number): Promise<OrderSetResponse> {
+    const params = { set_id };
     return this.createGetRequest<OrderSetResponse>("/set_order", params);
   }
 
@@ -148,7 +148,7 @@ export class ApiClient {
 
   private async createGetRequest<T>(
     relativePath: string,
-    params?: { [key: string]: string }
+    params?: { [key: string]: string | number }
   ): Promise<T> {
     const r = await this._instance.get<T>(this.resolveUrl(relativePath), {
       params
