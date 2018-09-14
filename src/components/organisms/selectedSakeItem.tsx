@@ -20,7 +20,7 @@ interface Props {
 export const SelectedSakeItem: React.StatelessComponent<Props> = props => {
   const { size, number, style } = props;
 
-  const color = props.item ? props.item.color || "#ff0000" : Color.lightgray;
+  const color = props.item ? props.item.color || Color.green : Color.lightgray;
 
   return (
     <div style={style}>
@@ -38,7 +38,8 @@ export const SelectedSakeItem: React.StatelessComponent<Props> = props => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            borderRadius: 9999
+            borderRadius: 9999,
+            color: Color.white
           }}
         >
           {number}
