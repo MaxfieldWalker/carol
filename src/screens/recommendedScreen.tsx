@@ -203,7 +203,7 @@ export default class RecommendedScreen extends React.Component<Props, State> {
 
           <div
             style={{
-              marginBottom: anyItemSelected ? 220 : 0
+              marginBottom: anyItemSelected ? 180 : 0
             }}
           >
             {isLoaded ? (
