@@ -16,7 +16,7 @@ export const UIHeader: React.StatelessComponent<Props> = props => (
   <h1
     style={{
       ...commonStyle,
-      fontSize: 48,
+      fontSize: 40,
       fontWeight: 700,
       ...props.style
     }}
