@@ -40,14 +40,18 @@ type P = Props & RouterProps & RouteComponentProps<Props>;
 
 class AppHeader2 extends React.Component<P> {
   onAppNameClick() {
-    history;
     this.props.history.push("/");
   }
 
   render() {
     return (
       <Wrapper>
-        <div onClick={this.onAppNameClick.bind(this)}>
+        <div
+          onClick={this.onAppNameClick.bind(this)}
+          style={{
+            zIndex: 1
+          }}
+        >
           <AppName>おさけフレンズ</AppName>
         </div>
         <div
