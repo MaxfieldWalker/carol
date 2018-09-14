@@ -28,8 +28,21 @@ export class HeroImage extends React.Component {
           style={{ position: "absolute", opacity: 0.9, objectFit: "cover" }}
         />
         <div style={{ position: "absolute", right: 16, bottom: 16 }}>
-          <CatchPhrase>おうちで飲める。</CatchPhrase>
-          <CatchPhrase>スピーディーにお届け。</CatchPhrase>
+          <CatchPhrase
+            style={{
+              fontSize: 48,
+              marginRight: -4
+            }}
+          >
+            おうちで飲める。
+          </CatchPhrase>
+          <CatchPhrase
+            style={{
+              fontSize: 28
+            }}
+          >
+            スピーディーにお届け。
+          </CatchPhrase>
         </div>
       </Wrapper>
     );
