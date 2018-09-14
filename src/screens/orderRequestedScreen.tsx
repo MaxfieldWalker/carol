@@ -1,11 +1,12 @@
 import * as React from "react";
-import { UIHeader } from "../components/atoms/typography";
+import { UIHeader, CaptionText } from "../components/atoms/typography";
 import { AppHeader } from "../components/organisms/appHeader";
 import { RootContainer } from "../components/atoms/rootContainer";
 import { LoadingCircle } from "../components/atoms/loadingCircle";
 import { HeaderedText } from "../components/molecules/headeredText";
 import { UIButton } from "../components/atoms/buttons";
 import { RouterProps } from "../util/router";
+import { Color } from "../components/theme";
 
 interface Props {}
 
@@ -59,17 +60,29 @@ export default class OrderRequestedScreen extends React.Component<P, State> {
           style={{
             display: "flex",
             justifyContent: "center",
-            alignItems: "center"
+            alignItems: "center",
+            paddingBottom: 20
           }}
         >
-          <div>
+          <div
+            style={{
+              textAlign: "center"
+            }}
+          >
             <img
-              src="/images/delivery-truck.png"
+              src="/images/bike.png"
               style={{
                 width: 128,
                 height: 128
               }}
             />
+            <CaptionText
+              style={{
+                color: Color.foreground
+              }}
+            >
+              ただいま配達中
+            </CaptionText>
           </div>
         </div>
         <div>
