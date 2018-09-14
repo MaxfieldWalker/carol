@@ -1,6 +1,6 @@
 import * as React from "react";
 import { AppHeader } from "../components/organisms/appHeader";
-import { UIHeader } from "../components/atoms/typography";
+import { UIHeader, CaptionText } from "../components/atoms/typography";
 import { Sake, PreferenceKeyword, PreferenceStrength } from "../api/types";
 import { SakeItem } from "../components/organisms/sakeItem";
 import { SakeDetailModal } from "../components/templates/sakeDetailModal";
@@ -164,6 +164,19 @@ export default class RecommendedScreen extends React.Component<Props, State> {
     ));
   }
 
+  renderNoItems() {
+    return (
+      <div
+        style={{
+          textAlign: "center",
+          padding: "24px 0"
+        }}
+      >
+        <CaptionText>おさけが見つかりませんでした。</CaptionText>
+      </div>
+    );
+  }
+
   render() {
     const { userName } = this.props;
     const {
@@ -193,7 +206,15 @@ export default class RecommendedScreen extends React.Component<Props, State> {
               marginBottom: anyItemSelected ? 220 : 0
             }}
           >
-            {isLoaded ? this.renderItems() : <LoadingCircle />}
+            {isLoaded ? (
+              this.state.items.length > 0 ? (
+                this.renderItems()
+              ) : (
+                this.renderNoItems()
+              )
+            ) : (
+              <LoadingCircle />
+            )}
           </div>
         </RootContainer>
         <ModalContainer
