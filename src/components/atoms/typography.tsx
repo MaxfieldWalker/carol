@@ -16,7 +16,7 @@ export const UIHeader: React.StatelessComponent<Props> = props => (
   <h1
     style={{
       ...commonStyle,
-      fontSize: 40,
+      fontSize: 32,
       fontWeight: 700,
       ...props.style
     }}
@@ -30,7 +30,7 @@ export const UISubheader: React.StatelessComponent<Props> = props => (
     style={{
       ...commonStyle,
       color: Color.black,
-      fontSize: 28,
+      fontSize: 24,
       marginTop: 18,
       marginBottom: 9,
       ...props.style

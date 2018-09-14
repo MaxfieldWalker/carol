@@ -57,7 +57,7 @@ export default class OrderRequestedScreen extends React.Component<P, State> {
       <div>
         <UIHeader
           style={{
-            fontSize: 40
+            fontSize: 32
           }}
         >
           ご注文が完了しました
