@@ -3,6 +3,7 @@ import ImagePlaceholder from "./imagePlaceholder";
 import { UIItemName } from "./typography";
 import { Color, CornerRadius } from "../theme";
 import { Checkmark } from "./checkmark";
+import { SafeImage } from "./safeImage";
 
 export interface ScrollImageItemProps {
   imageUrl: string;
@@ -29,16 +30,16 @@ export const ScrollImageItem: React.StatelessComponent<
 
   return (
     <div style={style} onClick={onClick}>
-      {imageUrl ? <img src={imageUrl} /> : null}
       <div
         style={{
           position: "relative"
         }}
       >
-        <ImagePlaceholder
-          width={itemSize}
-          height={itemSize}
+        <SafeImage
+          source={imageUrl}
           style={{
+            width: itemSize,
+            height: itemSize,
             borderRadius: CornerRadius.mid
           }}
         />

@@ -13,10 +13,10 @@ import {
   PurchaseResponse
 } from "./types";
 
+const STATIC_CONTENT_ENDPOINT = "http://18.218.151.99:8080/sakeapp/public";
+
 export class ApiClient {
   private static ENDPOINT = "http://18.218.151.99:8080/sakeapp/public/api";
-  private static STATIC_CONTENT_ENDPOINT =
-    "http://18.218.151.99:8080/sakeapp/public";
   // private static ENDPOINT =
   //   "http://ec2-18-222-108-7.us-east-2.compute.amazonaws.com:8080/sakeapp/public/api";
   private _instance: AxiosInstance;
@@ -53,7 +53,7 @@ export class ApiClient {
     const actual: GetItemsResponse = {
       items: result.items.map(x => ({
         ...x,
-        image_url: this.resolveImageUrl(x.image_url)
+        image_url: resolveImageUrl(x.image_url)
       }))
     };
 
@@ -75,7 +75,7 @@ export class ApiClient {
     const actual = {
       sets: result.sets.map(x => ({
         ...x,
-        thumbnail: this.resolveImageUrl(x.thumbnail)
+        thumbnail: resolveImageUrl(x.thumbnail)
       }))
     };
 
@@ -97,7 +97,7 @@ export class ApiClient {
       ...result,
       items: result.items.map(x => ({
         ...x,
-        thumbnail: this.resolveImageUrl(x.thumbnail)
+        thumbnail: resolveImageUrl(x.thumbnail)
       }))
     };
 
@@ -119,7 +119,7 @@ export class ApiClient {
       ...result,
       items: result.items.map(x => ({
         ...x,
-        image_url: this.resolveImageUrl(x.image_url)
+        image_url: resolveImageUrl(x.image_url)
       }))
     };
 
@@ -180,8 +180,8 @@ export class ApiClient {
   private resolveUrl(relativePath: string): string {
     return path.resolve(ApiClient.ENDPOINT, relativePath);
   }
+}
 
-  private resolveImageUrl(relativePath: string): string {
-    return ApiClient.STATIC_CONTENT_ENDPOINT + "/" + relativePath;
-  }
+export function resolveImageUrl(relativePath: string): string {
+  return STATIC_CONTENT_ENDPOINT + "/" + relativePath;
 }
