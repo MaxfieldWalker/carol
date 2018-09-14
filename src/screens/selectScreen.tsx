@@ -42,6 +42,10 @@ const sectionStyle: React.CSSProperties = {
   margin: "16px 0"
 };
 
+const ItemsContainer = styled.div`
+  padding: 6px 0;
+`;
+
 export default class SelectScreen extends React.Component<Props, State> {
   constructor(props: Props, state: State) {
     super(props, state);
@@ -108,20 +112,21 @@ export default class SelectScreen extends React.Component<Props, State> {
     return (
       <div style={sectionStyle}>
         <UISubheader>キーワード</UISubheader>
-        {buffy(keywordList, 3).map(
-          (row: ScrollImageItemProps[], index1: number) => (
-            <ItemsWrapper key={index1}>
-              {row.map((d: ScrollImageItemProps, index2: number) => (
-                <ScrollImageItem
-                  key={index1 * 3 + index2}
-                  onClick={() => this.onKeywordClick(d.id)}
-                  {...d}
-                />
-              ))}
-            </ItemsWrapper>
-          )
-        )}
-        <ItemsWrapper />
+        <ItemsContainer>
+          {buffy(keywordList, 3).map(
+            (row: ScrollImageItemProps[], index1: number) => (
+              <ItemsWrapper key={index1}>
+                {row.map((d: ScrollImageItemProps, index2: number) => (
+                  <ScrollImageItem
+                    key={index1 * 3 + index2}
+                    onClick={() => this.onKeywordClick(d.id)}
+                    {...d}
+                  />
+                ))}
+              </ItemsWrapper>
+            )
+          )}
+        </ItemsContainer>
       </div>
     );
   }
@@ -135,21 +140,19 @@ export default class SelectScreen extends React.Component<Props, State> {
 
     return (
       <div style={sectionStyle}>
-        <div
-          style={{
-            marginBottom: this.anyItemSelected ? 90 : 0
-          }}
-        >
+        <div style={{ marginBottom: this.anyItemSelected ? 90 : 0 }}>
           <UISubheader>アルコールの強さ</UISubheader>
-          <AlcoholStrengthButtonWrapper>
-            {strengthList.map((d: CheckButtonProps, index: number) => (
-              <CheckButton
-                key={index}
-                onClick={() => this.onAlcoholStrengthClick(d.id)}
-                {...d}
-              />
-            ))}
-          </AlcoholStrengthButtonWrapper>
+          <ItemsContainer>
+            <AlcoholStrengthButtonWrapper>
+              {strengthList.map((d: CheckButtonProps, index: number) => (
+                <CheckButton
+                  key={index}
+                  onClick={() => this.onAlcoholStrengthClick(d.id)}
+                  {...d}
+                />
+              ))}
+            </AlcoholStrengthButtonWrapper>
+          </ItemsContainer>
         </div>
       </div>
     );
