@@ -36,7 +36,9 @@ export default class CheckButton extends React.Component<Props> {
       cursor: "pointer",
       userSelect: "none",
       textAlign: "center",
-      padding: "8px 12px"
+      padding: "8px 12px",
+      boxSizing: "border-box",
+      height: 40
     };
 
     const mergedStyle = {

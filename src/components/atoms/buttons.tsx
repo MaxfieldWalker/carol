@@ -78,7 +78,8 @@ export const SmallButton: React.StatelessComponent<
     borderColor: color,
     borderWidth: BorderWidth.mid,
     borderStyle: "solid",
-    color: color
+    color: color,
+    height: 40
   };
 
   return (

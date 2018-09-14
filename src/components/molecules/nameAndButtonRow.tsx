@@ -5,7 +5,7 @@ const Row = styled.div`
   padding: 9px 9px;
   display: flex;
   align-items: flex-start;
-  height: 80px;
+  padding-bottom: 16px;
 `;
 
 export const NameAndButtonRow: React.StatelessComponent = props => {
