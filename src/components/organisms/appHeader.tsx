@@ -31,7 +31,7 @@ const AppName = styled.span`
   font-size: 24px;
   letter-spacing: 0.1em;
   color: ${Color.foreground};
-  background: linear-gradient(transparent 40%, ${Color.underline} 40%);
+  background: linear-gradient(transparent 50%, ${Color.underline} 50%);
 `;
 
 interface Props {}
