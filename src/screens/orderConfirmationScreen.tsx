@@ -145,7 +145,11 @@ export default class OrderConfirmationScreen extends React.Component<
             注文を確定する！
           </UIButton>
         </div>
-        <div>
+        <div
+          style={{
+            paddingBottom: 24
+          }}
+        >
           <HeaderedText
             header="おとどけ先住所"
             body="東京都世田谷区玉川１丁目１４−１"

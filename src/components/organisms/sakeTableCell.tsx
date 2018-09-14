@@ -25,14 +25,22 @@ export const SakeTableRow: React.StatelessComponent<Props> = props => {
         width: "100vw"
       }}
     >
-      <td style={commonstyle}>{number}</td>
+      <td
+        style={{
+          ...commonstyle,
+          paddingRight: 12,
+          paddingLeft: 12
+        }}
+      >
+        {number}
+      </td>
       <td style={commonstyle}>
         <SafeImage
           source={image_url}
           style={{ borderRadius: CornerRadius.small, width: 50, height: 50 }}
         />
       </td>
-      <td style={commonstyle}>{name}</td>
+      <td style={{ ...commonstyle, fontSize: 20 }}>{name}</td>
       <td style={{ ...commonstyle, textAlign: "right" }}>
         <span
           style={{

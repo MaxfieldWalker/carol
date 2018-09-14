@@ -93,7 +93,7 @@ export default class OrderRequestedScreen extends React.Component<P, State> {
           />
           <HeaderedText header="提供" body={storeName} />
         </div>
-        <div style={{ padding: "12px 0" }}>
+        <div style={{ padding: "24px 0" }}>
           <UIButton
             primary
             style={{ width: "100%" }}

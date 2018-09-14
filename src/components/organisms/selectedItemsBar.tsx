@@ -30,6 +30,7 @@ export default class SelectedItemsBar extends React.Component<Props> {
 
     const commonItemStyle: React.CSSProperties = {
       margin: "4px",
+      marginRight: 12,
       flex: 1,
       minWidth: 60,
       display: "inline-block",
